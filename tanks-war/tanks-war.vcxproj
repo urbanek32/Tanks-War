@@ -14,6 +14,7 @@
     <ProjectGuid>{C5350633-1022-42AA-9358-B50F1F68EA96}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>tankswar</RootNamespace>
+    <ProjectName>tanks-war - client</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -52,7 +53,7 @@
       <AdditionalIncludeDirectories>C:\Users\Patryk\Documents\Visual Studio 2010\Projects\tanks-war\tanks-war\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Patryk\Documents\Visual Studio 2010\Projects\tanks-war\tanks-war\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-main-d.lib;sfml-system-s-d.lib;sfml-graphics-s-d.lib;sfml-network-s-d.lib;sfml-window-s-d.lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -77,13 +78,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="ImageManager.h" />
+    <ClInclude Include="LoadContent.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="LoadContent.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

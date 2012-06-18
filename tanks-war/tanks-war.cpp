@@ -3,22 +3,22 @@
 
 #include "stdafx.h"
 
+menu *Menu;
+ImageManager ImgMan;
 
 int main()
 {
-	sf::RenderWindow okno(sf::VideoMode(800,600,32), "Tanks War");
+	Menu = new menu();
 
-	while(okno.IsOpened())
-	{
-		okno.Clear();
+	sf::RenderWindow App(sf::VideoMode(1300,731,32), "Tanks War");
+	App.SetPosition(0,-15);
+	App.UseVerticalSync(false);
+	
+
+	Menu->run(App);
 
 
-
-
-		okno.Display();
-		sf::Sleep(0.01f);
-	}
-
+	App.Close();
 	return 0;
 }
 
