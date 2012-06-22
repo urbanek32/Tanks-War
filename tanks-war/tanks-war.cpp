@@ -3,20 +3,19 @@
 
 #include "stdafx.h"
 
-menu *Menu;
-ImageManager ImgMan;
+GameManager *gameMng = new GameManager();
+
 
 int main()
 {
-	Menu = new menu();
 
-	sf::RenderWindow App(sf::VideoMode(1300,731,32), "Tanks War");
+	sf::RenderWindow App(sf::VideoMode(1300,600,32), "Tanks War");
 	App.SetPosition(0,-15);
 	App.UseVerticalSync(false);
 	
 
-	Menu->run(App);
 
+	gameMng->run(App);
 
 	App.Close();
 	return 0;

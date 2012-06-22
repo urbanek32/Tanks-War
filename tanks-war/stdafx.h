@@ -9,14 +9,22 @@
 
 #include <stdio.h>
 #include <tchar.h>
+#include <iostream>
+#include <sstream>
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 
-#include "menu.h"
+#include "cScreen.h"
+#include "MainMenu.h"
 #include "ImageManager.h"
 #include "LoadContent.h"
+#include "OptionsMenu.h"
+#include "GameManager.h"
+
+
+#include "TinyXML\tinyxml.h"
 
 
 // TODO: reference additional headers your program requires here
