@@ -12,10 +12,12 @@ GameManager::GameManager()
 	_gameState = ShowingMenu; screen = 1; // set int 1 : mean ShowingMenu
 	_Menu = new MainMenu();
 	_optionsMenu = new OptionsMenu();
+	_joinLobby = new JoinGameLobby();
 
-	Screens.push_back(_loadContent);
-	Screens.push_back(_Menu);
-	Screens.push_back(_optionsMenu);
+	Screens.push_back(_loadContent); // 0
+	Screens.push_back(_Menu); // 1
+	Screens.push_back(_optionsMenu); // 2
+	Screens.push_back(_joinLobby); // 3
 }
 
 

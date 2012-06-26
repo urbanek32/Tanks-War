@@ -18,6 +18,7 @@ private:
 	MainMenu *_Menu;
 	LoadContent *_loadContent;
 	OptionsMenu *_optionsMenu;
+	class JoinGameLobby *_joinLobby;
 
 	std::vector<cScreen*> Screens;
 	int screen;

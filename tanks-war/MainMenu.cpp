@@ -30,14 +30,14 @@ int MainMenu::Run(sf::RenderWindow& App)
 			if(m_Event.Type == sf::Event::MouseButtonReleased && m_Event.MouseButton.Button == sf::Mouse::Left && m_JoinRect.Contains(m_Event.MouseButton.X,m_Event.MouseButton.Y))
 			{
 				// TO DO: change screen to JoinGameScreen and let user select server
-				m_text_joingame.SetColor(sf::Color::Yellow);
+				return 3;
 			}
 
 			// event for Press Options label
 			if(m_Event.Type == sf::Event::MouseButtonReleased && m_Event.MouseButton.Button == sf::Mouse::Left && m_OptionsRect.Contains(m_Event.MouseButton.X,m_Event.MouseButton.Y))
 			{
 				// TO DO: change screen to OptionsScreen and let user change options
-				Running = false;
+				//Running = false;
 				return 2; // returns Options enum
 				
 			}
@@ -115,8 +115,8 @@ App.Draw(tdebug);
 
 MainMenu::MainMenu()
 {
-	background.SetImage(LoadContent::GetInstance()->ImgMnr->Get_Image("tlo-test.png"));
-	logo.SetImage(LoadContent::GetInstance()->ImgMnr->Get_Image("tankswar-logo.png"));
+	background.SetImage(LoadContent::GetInstance()->ImgMnr->Get_Image("CONTENT\\tlo-test.png"));
+	logo.SetImage(LoadContent::GetInstance()->ImgMnr->Get_Image("CONTENT\\tankswar-logo.png"));
 
 	m_text_joingame.SetFont(LoadContent::GetInstance()->m_font);
 	m_text_joingame.SetSize(80);

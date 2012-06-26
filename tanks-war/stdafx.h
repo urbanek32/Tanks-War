@@ -22,6 +22,8 @@
 #include "LoadContent.h"
 #include "OptionsMenu.h"
 #include "GameManager.h"
+#include "ImageButton.h"
+#include "JoinGameLobby.h"
 
 
 #include "TinyXML\tinyxml.h"

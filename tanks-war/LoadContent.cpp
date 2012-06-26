@@ -10,7 +10,7 @@ LoadContent::LoadContent()
 {
 	ImgMnr = new ImageManager();
 
-	m_font.LoadFromFile("menu-font.ttf",80);
+	m_font.LoadFromFile("CONTENT\\menu-font.ttf",80);
 
 
 }

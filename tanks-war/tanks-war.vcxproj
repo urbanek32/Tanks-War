@@ -80,7 +80,9 @@
   <ItemGroup>
     <ClInclude Include="cScreen.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="ImageButton.h" />
     <ClInclude Include="ImageManager.h" />
+    <ClInclude Include="JoinGameLobby.h" />
     <ClInclude Include="LoadContent.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="OptionsMenu.h" />
@@ -91,7 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="ImageButton.cpp" />
     <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="JoinGameLobby.cpp" />
     <ClCompile Include="LoadContent.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="OptionsMenu.cpp" />
@@ -114,7 +118,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ConfigFile.xml">
+    <None Include="CONTENT\ConfigFile.xml">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

@@ -48,6 +48,12 @@
     <ClInclude Include="cScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ImageButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JoinGameLobby.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -83,9 +89,15 @@
     <ClCompile Include="OptionsMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ImageButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JoinGameLobby.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ConfigFile.xml">
+    <None Include="CONTENT\ConfigFile.xml">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
