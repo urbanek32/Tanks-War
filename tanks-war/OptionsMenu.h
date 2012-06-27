@@ -8,12 +8,14 @@ public:
 
 
 private:
-	bool readXmlConfigFile(); // reading xml file for nick, nick_color and tank type
+	bool readDataFromXmlConfigFile(); // reading xml file for nick, nick_color and tank type
+	bool saveDataToXmlConfigFile(); // save nick, nick_color and tank_type to xml config file
+
 	sf::Event m_Event; // event container
 
 	bool Running; // for main loop while
 
-	class ImageButton *m_button_nick;
+	//class ImageButton *m_button_nick;
 	
 	sf::String YourNick, YourColor, YourTankType; // labeles for containers
 	sf::Shape NickShape, ColorShape, TankTypeShape; // contour containers

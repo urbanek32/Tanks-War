@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <root>
-  <nick>Totalny rozkurwiacz</nick>
-  <nick_color>Red</nick_color>
-  <tank_type>Heavy</tank_type>
+    <nick>Wymiatacz</nick>
+    <nick_color>Red</nick_color>
+    <tank_type>Medium</tank_type>
 </root>
