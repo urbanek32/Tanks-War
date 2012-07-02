@@ -12,6 +12,7 @@
 #include <iostream>
 #include <sstream>
 
+#include <TGUI/TGUI.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
@@ -22,7 +23,6 @@
 #include "LoadContent.h"
 #include "OptionsMenu.h"
 #include "GameManager.h"
-#include "ImageButton.h"
 #include "JoinGameLobby.h"
 
 

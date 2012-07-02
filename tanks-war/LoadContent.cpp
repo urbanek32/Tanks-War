@@ -10,7 +10,7 @@ LoadContent::LoadContent()
 {
 	ImgMnr = new ImageManager();
 
-	m_font.LoadFromFile("CONTENT\\menu-font.ttf",80);
+	m_font.loadFromFile("CONTENT\\menu-font2.ttf");
 
 
 }
@@ -22,7 +22,7 @@ LoadContent* LoadContent::GetInstance()
 	return ptr;
 }
 
-int LoadContent::Run(sf::RenderWindow &App)
+int LoadContent::Run(tgui::Window &App)
 {
 
 	return 1; // returns Go to MainMenu

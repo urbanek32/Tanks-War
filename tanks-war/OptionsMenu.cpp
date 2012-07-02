@@ -1,213 +1,124 @@
 #include "stdafx.h"
 
+#ifdef CPP_0x11
+OptionsMenu* ptr=nullptr;
+#else
+OptionsMenu* ptr=NULL;
+#endif
+
+
 OptionsMenu::OptionsMenu()
 {
-	readDataFromXmlConfigFile();
 	
-
-	//m_button_nick = new ImageButton("CONTENT\\button.png", player_nick, "Your Nick: ", sf::Vector2f(200,200), sf::Color(64,64,64,228));
-
+	
 	Running = true;
 
-#pragma region Bools for events
-	nickClicked = false;
-	colorClicked = false;
-	tankTypeClicked = false;
-#pragma endregion
-#pragma region Colors for events
-	colorNick = sf::Color(255,255,0,255);
-	colorColor = sf::Color(255,255,0,255);
-	colorTankType = sf::Color(255,255,0,255);
-#pragma endregion
+
+	
 #pragma region Labels
-	YourNick.SetPosition(50,100);
-	YourNick.SetFont(LoadContent::GetInstance()->m_font); 
-	YourNick.SetColor(sf::Color(30,0,255,255)); 
-	YourNick.SetStyle(sf::String::Bold); 
-	YourNick.SetText("Your Nick: ");
+	m_YourNickLabel.setPosition(50,100);
+	m_YourNickLabel.setFont(LoadContent::GetInstance()->m_font); 
+	m_YourNickLabel.setColor(sf::Color(255,100,0,255)); 
 
-	YourColor.SetPosition(50,150);
-	YourColor.SetFont(LoadContent::GetInstance()->m_font);
-	YourColor.SetColor(sf::Color(30,0,255,255));
-	YourColor.SetStyle(sf::String::Bold);
-	YourColor.SetText("Your Color: ");
+	m_YourColorLabel.setPosition(50,150);
+	m_YourColorLabel.setFont(LoadContent::GetInstance()->m_font);
+	m_YourColorLabel.setColor(sf::Color(255,100,0,255));
 
-	YourTankType.SetPosition(50,200);
-	YourTankType.SetFont(LoadContent::GetInstance()->m_font);
-	YourTankType.SetColor(sf::Color(30,0,255,255));
-	YourTankType.SetStyle(sf::String::Bold);
-	YourTankType.SetText("Your Tank Type: ");
+	m_YourTankTypeLabel.setPosition(50,200);
+	m_YourTankTypeLabel.setFont(LoadContent::GetInstance()->m_font);
+	m_YourTankTypeLabel.setColor(sf::Color(255,100,0,255));
 #pragma endregion
-#pragma region FloatRectangle for events
-	nickRect = sf::FloatRect(300, 100, 600, 140);
-	colorRect = sf::FloatRect(300, 150, 600, 190);
-	tankTypeRect = sf::FloatRect(300, 200, 600, 240);
-#pragma endregion
-#pragma region Texts typed by user
 
-	player_nick.SetPosition(305, 100);
-	player_nick.SetFont(LoadContent::GetInstance()->m_font);
-	player_nick.SetColor(sf::Color(255,50,0,255));
-	player_nick.SetStyle(sf::String::Bold);
-
-	player_color.SetPosition(305, 150);
-	player_color.SetFont(LoadContent::GetInstance()->m_font);
-	player_color.SetColor(sf::Color(255,50,0,255));
-	player_color.SetStyle(sf::String::Bold);
-
-	player_tankType.SetPosition(305, 200);
-	player_tankType.SetFont(LoadContent::GetInstance()->m_font);
-	player_tankType.SetColor(sf::Color(255,50,0,255));
-	player_tankType.SetStyle(sf::String::Bold);
-
-#pragma endregion
 }
 
-int OptionsMenu::Run(sf::RenderWindow& App)
+int OptionsMenu::Run(tgui::Window & App)
 {
 	Running = true;
+	
+	init_Gui(App);
+	
 
+	readDataFromXmlConfigFile(App);
+
+	m_YourNickLabel.setString("Your nick: ");
+	m_YourColorLabel.setString("Your color: ");
+	m_YourTankTypeLabel.setString("Your tank type: ");
+	
 	while(Running)
 	{
-		App.Clear();
+		App.clear();
 
-		while(App.GetEvent(m_Event))
+		while(App.pollEvent(m_Event))
 		{
-			if(m_Event.Type == sf::Event::Closed)
+			if(m_Event.type == sf::Event::Closed)
 			{
 				Running = false;
 				return (-1);
 			}
 
-			if(m_Event.Type == sf::Event::KeyPressed && m_Event.Key.Code == sf::Key::Escape)
+			if(m_Event.type == sf::Event::KeyPressed && m_Event.key.code == sf::Keyboard::Escape)
 			{
 				Running = false;
 				return 1;
 			}
 
-#pragma region Events for TextEntered
-			if(m_Event.Type == sf::Event::TextEntered)
+			App.handleEvent(m_Event);
+
+		} // end of while events
+		
+		
+		tgui::Callback _callback;
+		while(App.getCallback(_callback))
+		{
+			if(_callback.callbackID == 1) // Back button pressed
 			{
-				if(nickClicked)
-				{
-					std::string tmpNick = player_nick.GetText();
-					if(m_Event.Text.Unicode == '\b')
-					{
-						if(tmpNick.size() > 0) tmpNick.erase(tmpNick.size() -1, 1);
-					} 
-					else if(m_Event.Text.Unicode < 128)
-					{
-						if(tmpNick.size() < 20) tmpNick += static_cast<char>(m_Event.Text.Unicode);
-					}
-					player_nick.SetText(tmpNick);
-				}
 
-				if(colorClicked)
-				{
-					std::string tmpColorNick = player_color.GetText();
-					if(m_Event.Text.Unicode == '\b')
-					{
-						if(tmpColorNick.size() > 0) tmpColorNick.erase(tmpColorNick.size() -1, 1);
-					} 
-					else if(m_Event.Text.Unicode < 128)
-					{
-						if(tmpColorNick.size() < 20) tmpColorNick += static_cast<char>(m_Event.Text.Unicode);
-					}
-					player_color.SetText(tmpColorNick);
-				}
+			}
 
-				if(tankTypeClicked)
-				{
-					std::string tmptankType = player_tankType.GetText();
-					if(m_Event.Text.Unicode == '\b')
-					{
-						if(tmptankType.size() > 0) tmptankType.erase(tmptankType.size() -1, 1);
-					} 
-					else if(m_Event.Text.Unicode < 128)
-					{
-						if(tmptankType.size() < 20) tmptankType += static_cast<char>(m_Event.Text.Unicode);
-					}
-					player_tankType.SetText(tmptankType);
-				}
-
+			if(_callback.callbackID == 2) // Save button pressed
+			{
 				saveDataToXmlConfigFile();
 			}
-#pragma endregion
-#pragma region Events for shapes
-			if(m_Event.Type == sf::Event::MouseButtonReleased && m_Event.MouseButton.Button == sf::Mouse::Left )
+
+			if(_callback.callbackID == 3) // NickBox
 			{
-				if(nickRect.Contains(m_Event.MouseButton.X,m_Event.MouseButton.Y))
+				if(_callback.trigger == tgui::Callback::textChanged)
 				{
-					nickClicked = true;
-					colorNick = sf::Color(0,255,0,255);
-				}
-				else
-				{
-					nickClicked = false;
-					colorNick = sf::Color(255,255,0,255);
-				}
-
-				if(colorRect.Contains(m_Event.MouseButton.X,m_Event.MouseButton.Y))
-				{
-					colorClicked = true;
-					colorColor = sf::Color(0,255,0,255);
-				}
-				else
-				{
-					colorClicked = false;
-					colorColor = sf::Color(255,255,0,255);
-				}
-
-				if(tankTypeRect.Contains(m_Event.MouseButton.X,m_Event.MouseButton.Y))
-				{
-					tankTypeClicked = true;
-					colorTankType = sf::Color(0,255,0,255);
-				}
-				else
-				{
-					tankTypeClicked = false;
-					colorTankType = sf::Color(255,255,0,255);
+					player_nick = _callback.text;
 				}
 			}
-#pragma endregion
-			
-		} // end of while events loop
 
-#pragma region DEBUG INFO
-std::ostringstream bufor;
-sf::String tdebug;
-tdebug.SetFont(LoadContent::GetInstance()->m_font);
-tdebug.SetSize(20); tdebug.SetColor(sf::Color::Red); tdebug.SetPosition(0,0);
-bufor <<nickClicked;
-tdebug.SetText(bufor.str());
-App.Draw(tdebug);
-#pragma endregion		
+			if(_callback.callbackID == 4) // Color comboBox
+			{
+				if(_callback.trigger == tgui::Callback::itemSelected)
+				{
+					player_color = _callback.text;
+				}
+			}
 
-#pragma region Draw Shapes, Labels, Titles
-		NickShape = sf::Shape::Rectangle(300, 100, 600, 140,  sf::Color(0,0,0,0), 2.0f, colorNick);
-		App.Draw(YourNick);
-		App.Draw(player_nick);
-		App.Draw(NickShape);
+			if(_callback.callbackID == 5) // TankType comboBox
+			{
+				if(_callback.trigger == tgui::Callback::itemSelected)
+				{
+					player_tankType = _callback.text;
+				}
+			}
 
-		App.Draw(YourColor);
-		ColorShape = sf::Shape::Rectangle(300, 150, 600, 190,  sf::Color(0,0,0,0), 2.0f, colorColor); 
-		App.Draw(player_color);
-		App.Draw(ColorShape);
 
-		App.Draw(YourTankType);
-		TankTypeShape = sf::Shape::Rectangle(300, 200, 600, 240,  sf::Color(0,0,0,0), 2.0f, colorTankType);
-		App.Draw(player_tankType);
-		App.Draw(TankTypeShape);
-#pragma endregion
-
+		} // end of while callbacks 
 		
-		App.Display();
-		sf::Sleep(0.01f);
+		App.draw(m_YourNickLabel);
+		App.draw(m_YourColorLabel);
+		App.draw(m_YourTankTypeLabel);
+
+		App.drawGUI();
+		App.display();
+		sf::sleep(sf::milliseconds(10));
 	} // end of while loop
 	return (-1);
 }
 
-bool OptionsMenu::readDataFromXmlConfigFile()
+bool OptionsMenu::readDataFromXmlConfigFile(tgui::Window & App)
 {
 	
 
@@ -246,7 +157,7 @@ bool OptionsMenu::readDataFromXmlConfigFile()
 			TiXmlText *t = e->ToText();
 			if(t == NULL)
 				continue;
-			player_nick.SetText(t->Value());
+			player_nick = (t->Value());
 
 		}
 
@@ -256,7 +167,7 @@ bool OptionsMenu::readDataFromXmlConfigFile()
 			TiXmlText *t = e->ToText();
 			if(t == NULL)
 				continue;
-			player_color.SetText(t->Value());
+			player_color = (t->Value());
 
 		}
 
@@ -266,7 +177,7 @@ bool OptionsMenu::readDataFromXmlConfigFile()
 			TiXmlText *t = e->ToText();
 			if(t == NULL)
 				continue;
-			player_tankType.SetText(t->Value());
+			player_tankType = (t->Value());
 
 		}
 
@@ -279,7 +190,7 @@ bool OptionsMenu::readDataFromXmlConfigFile()
 		}*/
 	}
 
-
+	App.getEditBox("NICKBOX")->setText(player_nick);
 	return true;
 }
 
@@ -293,24 +204,91 @@ bool OptionsMenu::saveDataToXmlConfigFile()
 
 	TiXmlElement* nickElem = new TiXmlElement("nick");
 	root->LinkEndChild(nickElem);
-	std::string _tmpNick = player_nick.GetText();
+	if(player_nick.isEmpty()) player_nick = "empty";
+	std::string _tmpNick = player_nick;
 	TiXmlText* nickText = new TiXmlText(_tmpNick.c_str());
 	nickElem->LinkEndChild(nickText);
 
 	TiXmlElement* nick_colorElem = new TiXmlElement("nick_color");
 	root->LinkEndChild(nick_colorElem);
-	std::string _tmpColorNick = player_color.GetText();
+	if(player_color.isEmpty()) player_color = "empty";
+	std::string _tmpColorNick = player_color;
 	TiXmlText* nickColorText = new TiXmlText(_tmpColorNick.c_str());
 	nick_colorElem->LinkEndChild(nickColorText);
 
 	TiXmlElement* tank_typeElem = new TiXmlElement("tank_type");
 	root->LinkEndChild(tank_typeElem);
-	std::string _tmpTankType = player_tankType.GetText();
+	if(player_tankType.isEmpty()) player_tankType = "empty";
+	std::string _tmpTankType = player_tankType;
 	TiXmlText* tankTypeText = new TiXmlText(_tmpTankType.c_str());
 	tank_typeElem->LinkEndChild(tankTypeText);
 
 	bool _success = doc.SaveFile("CONTENT\\ConfigFile.xml");
 	doc.Clear();
 	if(_success) return true; else return false;
+
+}
+
+sf::String OptionsMenu::GetPlayerColor()
+{
+	return player_color;
+}
+
+sf::String OptionsMenu::GetPlayerNick()
+{
+	return player_nick;
+}
+
+OptionsMenu* OptionsMenu::GetInstance()
+{
+	if(ptr==NULL) ptr = new OptionsMenu();
+	return ptr;
+}
+
+void OptionsMenu::init_Gui(tgui::Window & App)
+{
+/*	tgui::Button* buttonBack = App.addButton("SAVE");
+	buttonBack->load("CONTENT\\TGUI\\objects\\Button\\Black");
+	buttonBack->setText("Back");
+	buttonBack->setScale(0.6f,0.6f);
+	buttonBack->setPosition(20, 400);
+	buttonBack->callbackID = 1;
+
+	tgui::Button* buttonSave = App.addButton("BACK");
+	buttonSave->load("CONTENT\\TGUI\\objects\\Button\\Black");
+	buttonSave->setText("Save");
+	buttonSave->setScale(0.6f,0.6f);
+	buttonSave->setPosition(200, 400);
+	buttonSave->callbackID = 2;
+
+	tgui::EditBox* nickBox = App.addEditBox("NICKBOX");
+	nickBox->load("CONTENT\\TGUI\\objects\\EditBox\\Black");
+	nickBox->setPosition(300, 100);
+	nickBox->setSize(360,40);
+	nickBox->callbackID = 3;
+*/
+
+	tgui::ComboBox* tankTypeBox = App.addComboBox("TANKTYPEBOX");
+	tankTypeBox->load("CONTENT\\TGUI\\objects\\ComboBox\\Black", 150);
+	tankTypeBox->setPosition(420, 200);
+	tankTypeBox->addItem("Light");
+	tankTypeBox->addItem("Medium");
+	tankTypeBox->addItem("Heavy");
+	tankTypeBox->setSelectedItem(2);
+	tankTypeBox->callbackID = 5;
+
+	tankTypeBox->changeColors(sf::Color(50, 50, 50), sf::Color(200, 200, 200), sf::Color(10, 110, 255), sf::Color(255,255,255));
+
+
+	tgui::ComboBox* colorBox = App.addComboBox("COLORBOX");
+	colorBox->load("CONTENT\\TGUI\\objects\\ComboBox\\Black", 150);
+	colorBox->setPosition(340, 150);
+	colorBox->addItem("Red");
+	colorBox->addItem("Blue");
+	colorBox->addItem("Yellow");
+	colorBox->setSelectedItem(1);
+	colorBox->callbackID = 4;
+
+	colorBox->changeColors(sf::Color(50, 50, 50), sf::Color(200, 200, 200), sf::Color(10, 110, 255), sf::Color(255,255,255));
 
 }

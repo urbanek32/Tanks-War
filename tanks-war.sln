@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tanks-war", "tanks-war\tanks-war.vcxproj", "{C5350633-1022-42AA-9358-B50F1F68EA96}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tanks-war - client", "tanks-war\tanks-war.vcxproj", "{C5350633-1022-42AA-9358-B50F1F68EA96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

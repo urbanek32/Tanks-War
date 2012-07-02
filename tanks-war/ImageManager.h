@@ -1,15 +1,15 @@
 #include "stdafx.h"
 
-#ifndef MANAG_H
-#define MANAG_H
+#ifndef IMANAGER_H
+#define IMANAGER_H
 class ImageManager
 {
 public:
 	ImageManager();
-	// return const sf::Image for sf::Sprite->SetImage or something
-	const sf::Image & Get_Image(const std::string& nazwapliku);
+	// return const sf::Image
+	const sf::Image & Get_Image(const std::string & filename);
 	// remove image from memory via filename
-	void Delete_Image(const std::string& nazwapliku);
+	void Delete_Image(const std::string & filename);
 	// return instnace to this object
 	static ImageManager* GetInstance();
 	

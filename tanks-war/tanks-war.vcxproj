@@ -49,14 +49,14 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Patryk\Documents\Visual Studio 2010\Projects\tanks-war\tanks-war\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML 2.0 dla VS 2010 [RC]\include;C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\TGUI 0.4 [30.06]\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Patryk\Documents\Visual Studio 2010\Projects\tanks-war\tanks-war\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-main-d.lib;sfml-system-s-d.lib;sfml-graphics-s-d.lib;sfml-network-s-d.lib;sfml-window-s-d.lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML 2.0 dla VS 2010 [RC]\lib;C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\TGUI 0.4 [30.06]\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-main-d.lib;sfml-system-s-d.lib;sfml-graphics-s-d.lib;sfml-network-s-d.lib;sfml-window-s-d.lib;TGUI-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,9 +80,7 @@
   <ItemGroup>
     <ClInclude Include="cScreen.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="ImageButton.h" />
     <ClInclude Include="ImageManager.h" />
-    <ClInclude Include="JoinGameLobby.h" />
     <ClInclude Include="LoadContent.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="OptionsMenu.h" />
@@ -93,9 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="ImageButton.cpp" />
     <ClCompile Include="ImageManager.cpp" />
-    <ClCompile Include="JoinGameLobby.cpp" />
     <ClCompile Include="LoadContent.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="OptionsMenu.cpp" />

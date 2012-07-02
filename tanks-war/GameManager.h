@@ -10,16 +10,15 @@ class GameManager
 public:
 	GameManager();
 	static GameManager* GetInstance();
-	void run(sf::RenderWindow& App);
+	void run(tgui::Window & App);
 
 	GameState _gameState;
 	
 private:
-	MainMenu *_Menu;
-	LoadContent *_loadContent;
-	OptionsMenu *_optionsMenu;
-	class JoinGameLobby *_joinLobby;
+	LoadContent *m_loadContent;
+	MainMenu *m_Menu;
+	OptionsMenu *m_Options;
 
-	std::vector<cScreen*> Screens;
-	int screen;
+	std::vector<cScreen*> m_Screens;
+	int m_screen;
 };

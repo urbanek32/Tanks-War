@@ -13,5 +13,5 @@ public:
 	// main font instance
 	sf::Font m_font;
 
-	virtual int Run(sf::RenderWindow &App);
+	virtual int Run(tgui::Window &App);
 };

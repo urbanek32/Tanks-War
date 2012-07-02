@@ -9,15 +9,19 @@ GameManager *gameMng = new GameManager();
 int main()
 {
 
-	sf::RenderWindow App(sf::VideoMode(1300,700,32), "Tanks War");
-	App.SetPosition(0,-15);
-	App.UseVerticalSync(false);
+	tgui::Window App(sf::VideoMode(1300,700,32), "Tanks War");
+	App.setFramerateLimit(60);
 	
-
+	
 
 	gameMng->run(App);
 
-	App.Close();
+
+	App.clear();
+	App.close();
+
+	delete gameMng;
+
 	return 0;
 }
 

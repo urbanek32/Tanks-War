@@ -8,29 +8,30 @@ GameManager* ptr=NULL;
 
 GameManager::GameManager()
 {
-	_loadContent = new LoadContent();
-	_gameState = ShowingMenu; screen = 1; // set int 1 : mean ShowingMenu
-	_Menu = new MainMenu();
-	_optionsMenu = new OptionsMenu();
-	_joinLobby = new JoinGameLobby();
+	_gameState = ShowingMenu; m_screen = 0; // set int 1 : mean ShowingMenu
+	
+	m_loadContent = new LoadContent();
+	m_Menu = new MainMenu();
+	m_Options = new OptionsMenu();
+	
 
-	Screens.push_back(_loadContent); // 0
-	Screens.push_back(_Menu); // 1
-	Screens.push_back(_optionsMenu); // 2
-	Screens.push_back(_joinLobby); // 3
+	m_Screens.push_back(m_loadContent); // 0
+	m_Screens.push_back(m_Menu); // 1
+	m_Screens.push_back(m_Options); // 2
+	
 }
 
 
-void GameManager::run(sf::RenderWindow& App)
+void GameManager::run(tgui::Window & App)
 {
-	
-		while(screen >= 0)
+		while(m_screen >= 0)
 		{
-			screen = Screens[screen]->Run(App);
+			m_screen = m_Screens[m_screen]->Run(App);
 		}
-		
 
-
+		delete m_loadContent;
+		delete m_Menu;
+		delete m_Options;
 }
 
 GameManager* GameManager::GetInstance()
