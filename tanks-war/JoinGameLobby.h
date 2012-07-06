@@ -8,7 +8,10 @@ public:
 
 private:
 	sf::Event m_Event;
-	bool Running;
+	bool m_running;
 
-	sf::Sprite background;
+	sf::Sprite m_background;
+
+	void Init();
+	bool m_Inited;
 };

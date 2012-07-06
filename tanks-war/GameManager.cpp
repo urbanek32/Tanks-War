@@ -13,16 +13,18 @@ GameManager::GameManager()
 	m_loadContent = new LoadContent();
 	m_Menu = new MainMenu();
 	m_Options = new OptionsMenu();
+	m_joinGameLobby = new JoinGameLobby();
 	
 
 	m_Screens.push_back(m_loadContent); // 0
 	m_Screens.push_back(m_Menu); // 1
 	m_Screens.push_back(m_Options); // 2
+	m_Screens.push_back(m_joinGameLobby); // 3
 	
 }
 
 
-void GameManager::run(tgui::Window & App)
+void GameManager::run(sf::RenderWindow & App)
 {
 		while(m_screen >= 0)
 		{
@@ -32,6 +34,7 @@ void GameManager::run(tgui::Window & App)
 		delete m_loadContent;
 		delete m_Menu;
 		delete m_Options;
+		delete m_joinGameLobby;
 }
 
 GameManager* GameManager::GetInstance()

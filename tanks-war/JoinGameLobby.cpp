@@ -2,38 +2,56 @@
 
 JoinGameLobby::JoinGameLobby()
 {
-	Running = true;
-	background.SetImage(LoadContent::GetInstance()->ImgMnr->Get_Image("CONTENT\\pokerface.jpg"));
+	
+	m_Inited = false;
+	m_running = true;
+	
 }
 
 int JoinGameLobby::Run(sf::RenderWindow & App)
 {
-	Running = true;
+	m_running = true;
 
-	while(Running)
+	if(!m_Inited)
+		Init();
+
+	while(m_running)
 	{
 		App.Clear();
+		App.Draw(m_background);
 
 		while(App.GetEvent(m_Event))
 		{
 			if(m_Event.Type == sf::Event::Closed)
 			{
-				Running = false;
+				m_running = false;
 				return (-1);
 			}
 
 			if(m_Event.Type == sf::Event::KeyPressed && m_Event.Key.Code == sf::Key::Escape)
 			{
-				Running = false;
+				m_running = false;
 				return 1;
+			}
+			// GO TO GAME
+			if(m_Event.Type == sf::Event::KeyPressed && m_Event.Key.Code == sf::Key::Return)
+			{
+				m_running = false;
+				return 4;
 			}
 
 		} // end of events while loop
 
-		App.Draw(background);
 
 		App.Display();
 		sf::Sleep(0.01f);
 	} // end of while loop
 
+	return (-1);
+}
+
+void JoinGameLobby::Init()
+{
+	m_background.SetImage(gResMng.Get_Image("CONTENT//pokerface.png"));
+	m_Inited = true;
 }

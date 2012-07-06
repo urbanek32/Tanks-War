@@ -8,13 +8,20 @@ LoadContent* ptr=NULL;
 
 LoadContent::LoadContent()
 {
-	ImgMnr = new ImageManager();
 
-	m_font.loadFromFile("CONTENT\\menu-font2.ttf");
-
-
+	m_font.LoadFromFile("CONTENT//menu-font2.ttf",50);
+	m_Inited = false;
+	m_loadAll = new LoadAll();
 }
 
+void LoadContent::Init()
+{
+
+	m_text = new sf::String("Loading content...",m_font, 40);
+	m_text->SetPosition(400, 200);
+	m_text->SetColor(sf::Color::Yellow);
+	
+}
 
 LoadContent* LoadContent::GetInstance()
 {
@@ -22,8 +29,43 @@ LoadContent* LoadContent::GetInstance()
 	return ptr;
 }
 
-int LoadContent::Run(tgui::Window &App)
+int LoadContent::Run(sf::RenderWindow &App)
 {
+	m_loadAll->Launch();
+	Init();
 
+	while(!m_loadAll->done)
+	{
+		App.Clear();
+		while(App.GetEvent(m_Event))
+		{
+			if(m_Event.Type == sf::Event::Closed)
+				return (-1);
+		}
+	
+
+		App.Draw(*m_text);
+
+		App.Display();
+		sf::Sleep(0.01f);		
+	}
+	m_loadAll->Wait();
+	
+	delete m_text;
 	return 1; // returns Go to MainMenu
+}
+
+LoadAll::LoadAll()
+{
+	done = false;
+}
+
+void LoadAll::Run()
+{
+	// PUT HERE ALL CONTENT TO LOAD
+
+	gResMng.Load_Image("CONTENT//tlo-test.png");
+	gResMng.Load_Image("CONTENT//pokerface.png");
+
+	done = true;
 }

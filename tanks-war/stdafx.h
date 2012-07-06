@@ -12,18 +12,18 @@
 #include <iostream>
 #include <sstream>
 
-#include <TGUI/TGUI.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 
 #include "cScreen.h"
 #include "MainMenu.h"
-#include "ImageManager.h"
+#include "ResourceManager.h"
 #include "LoadContent.h"
 #include "OptionsMenu.h"
 #include "GameManager.h"
 #include "JoinGameLobby.h"
+#include "TextBox.h"
 
 
 #include "TinyXML\tinyxml.h"

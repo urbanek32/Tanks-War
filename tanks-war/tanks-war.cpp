@@ -9,16 +9,15 @@ GameManager *gameMng = new GameManager();
 int main()
 {
 
-	tgui::Window App(sf::VideoMode(1300,700,32), "Tanks War");
-	App.setFramerateLimit(60);
-	
+	sf::RenderWindow App(sf::VideoMode(1300,700,32), "Tanks War");
+	App.SetFramerateLimit(60);
 	
 
 	gameMng->run(App);
 
 
-	App.clear();
-	App.close();
+	App.Clear();
+	App.Close();
 
 	delete gameMng;
 
