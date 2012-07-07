@@ -39,9 +39,11 @@ int JoinGameLobby::Run(sf::RenderWindow & App)
 				m_running = false;
 				return 4;
 			}
+			m_serverIPBox->HandleEvent(m_Event);
 
 		} // end of events while loop
 
+		m_serverIPBox->Show(App);
 
 		App.Display();
 		sf::Sleep(0.01f);
@@ -52,6 +54,12 @@ int JoinGameLobby::Run(sf::RenderWindow & App)
 
 void JoinGameLobby::Init()
 {
-	m_background.SetImage(gResMng.Get_Image("CONTENT//pokerface.png"));
+	//m_background.SetImage(gResMng.Get_Image("CONTENT//pokerface.png"));
+
+	m_serverIP.SetText("127.0.0.1");
+
+	m_serverIPBox = new TextBox(sf::Vector2f(100, 100), m_serverIP, sf::Color(255,0,0,255), 30.f);
+	m_serverIPBox->SetLabel(sf::String("IP address: "), 30.f, sf::Color(255,100,0,255), 4.f);
+
 	m_Inited = true;
 }

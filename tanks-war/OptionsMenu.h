@@ -4,9 +4,11 @@ class OptionsMenu : public cScreen
 {
 public:
 	OptionsMenu();
-	virtual int Run(sf::RenderWindow & App); // main function to draw on screen
-	sf::String GetPlayerNick();
-	sf::String GetPlayerColor();
+
+	// main function to draw on screen
+	virtual int Run(sf::RenderWindow & App); 
+
+	// return static pointer to this class
 	static OptionsMenu* GetInstance();
 
 private:
@@ -17,13 +19,15 @@ private:
 	bool Running; // for main loop while
 	
 	
-	sf::String m_YourNickLabel, m_YourColorLabel, m_YourTankTypeLabel; // labeles for containers
 	sf::String player_nick, player_color, player_tankType; // helpers for XML
 	std::string attr,t,elemName; // helpers for XML
 
-	class TextBox * m_playerNickBox;
+	class TextBox *m_playerNickBox;
 
+	// method using once at first enter to Run method
 	void Init();
+
+	// @up
 	bool m_Inited;
 
 };

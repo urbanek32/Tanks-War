@@ -9,7 +9,7 @@ public:
 	static LoadContent* GetInstance();
 
 	// main font instance
-	sf::Font m_font;
+	sf::Font m_font, m_font2;
 
 	// main function to draw this content
 	virtual int Run(sf::RenderWindow &App);

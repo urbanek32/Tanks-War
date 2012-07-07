@@ -9,7 +9,7 @@ GameManager *gameMng = new GameManager();
 int main()
 {
 
-	sf::RenderWindow App(sf::VideoMode(1300,700,32), "Tanks War");
+	sf::RenderWindow App(sf::VideoMode(1300,700,32), "Tanks War", sf::Style::Close);
 	App.SetFramerateLimit(60);
 	
 

@@ -9,7 +9,8 @@ LoadContent* ptr=NULL;
 LoadContent::LoadContent()
 {
 
-	m_font.LoadFromFile("CONTENT//menu-font2.ttf",50);
+	m_font.LoadFromFile("CONTENT//defused.ttf",50);
+	m_font2.LoadFromFile("CONTENT//SinsBold.ttf",50);
 	m_Inited = false;
 	m_loadAll = new LoadAll();
 }

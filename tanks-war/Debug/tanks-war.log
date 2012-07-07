@@ -1,11 +1,11 @@
-﻿Build started 2012-07-06 21:45:54.
+﻿Build started 2012-07-07 22:41:17.
      1>Project "C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\tanks-war.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\tanks-war - client.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          All outputs are up-to-date.
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\tanks-war - client.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt OptionsMenu.cpp
-         OptionsMenu.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\tanks-war - client.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt JoinGameLobby.cpp
+         JoinGameLobby.cpp
          All outputs are up-to-date.
        ManifestResourceCompile:
          All outputs are up-to-date.
@@ -110,4 +110,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.59
+Time Elapsed 00:00:00.64

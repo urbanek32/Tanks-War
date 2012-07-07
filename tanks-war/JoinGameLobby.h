@@ -12,6 +12,10 @@ private:
 
 	sf::Sprite m_background;
 
+	class TextBox *m_serverIPBox;
+
+	sf::String m_serverIP;
+
 	void Init();
 	bool m_Inited;
 };

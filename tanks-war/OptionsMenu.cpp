@@ -27,7 +27,7 @@ int OptionsMenu::Run(sf::RenderWindow & App)
 	if(!m_Inited)
 		Init();
 
-
+	
 	
 	while(Running)
 	{
@@ -43,14 +43,16 @@ int OptionsMenu::Run(sf::RenderWindow & App)
 
 			if(m_Event.Type == sf::Event::KeyPressed && m_Event.Key.Code == sf::Key::Escape)
 			{
+				saveDataToXmlConfigFile();
 				Running = false;
 				return 1;
 			}
 
-		
+			m_playerNickBox->HandleEvent(m_Event);
 
 		} // end of while events
-		
+
+#pragma region DEBUG INFO	
 std::ostringstream bufor;
 sf::String tdebug;
 tdebug.SetFont(sf::Font::GetDefaultFont());
@@ -59,12 +61,10 @@ tdebug.SetColor(sf::Color(255,0,0,255));
 bufor << "MapSize= " << gResMng.Get_MapSize();
 tdebug.SetText(bufor.str());
 App.Draw(tdebug);		
-		
+#pragma endregion		
+
 		m_playerNickBox->Show(App);
 		
-		App.Draw(m_YourNickLabel);
-		App.Draw(m_YourColorLabel);
-		App.Draw(m_YourTankTypeLabel);
 
 		App.Display();
 		sf::Sleep(0.01f);
@@ -76,25 +76,9 @@ void OptionsMenu::Init()
 {
 	readDataFromXmlConfigFile();
 
-	m_YourNickLabel.SetText("Your nick: ");
-	m_YourColorLabel.SetText("Your color: ");
-	m_YourTankTypeLabel.SetText("Your tank type: ");
 
-#pragma region Labels
-	m_YourNickLabel.SetPosition(50,100);
-	m_YourNickLabel.SetFont(LoadContent::GetInstance()->m_font); 
-	m_YourNickLabel.SetColor(sf::Color(255,100,0,255)); 
-
-	m_YourColorLabel.SetPosition(50,150);
-	m_YourColorLabel.SetFont(LoadContent::GetInstance()->m_font);
-	m_YourColorLabel.SetColor(sf::Color(255,100,0,255));
-
-	m_YourTankTypeLabel.SetPosition(50,200);
-	m_YourTankTypeLabel.SetFont(LoadContent::GetInstance()->m_font);
-	m_YourTankTypeLabel.SetColor(sf::Color(255,100,0,255));
-#pragma endregion
-
-	m_playerNickBox = new TextBox(sf::Vector2f(350, 100),sf::Vector2f(600, 140), sf::String(""), sf::Color(0,0,0,0), 0.f, sf::Color(100,100,0,255),sf::Color(0,255,255,255), player_nick, sf::Color(255,0,0,255), 30.f);
+	m_playerNickBox = new TextBox(sf::Vector2f(150,100), player_nick, sf::Color(255,0,0,255), 30.f);
+	m_playerNickBox->SetLabel(sf::String("Your nick: "), 30.f, sf::Color(255,110,0,255), 4.f);
 
 	m_Inited = true;
 }
@@ -176,6 +160,8 @@ bool OptionsMenu::readDataFromXmlConfigFile()
 
 bool OptionsMenu::saveDataToXmlConfigFile()
 {
+	player_nick.SetText(m_playerNickBox->GetText());
+
 	std::string _temp;
 
 	TiXmlDocument doc; 
@@ -209,16 +195,6 @@ bool OptionsMenu::saveDataToXmlConfigFile()
 	doc.Clear();
 	if(_success) return true; else return false;
 
-}
-
-sf::String OptionsMenu::GetPlayerColor()
-{
-	return player_color;
-}
-
-sf::String OptionsMenu::GetPlayerNick()
-{
-	return player_nick;
 }
 
 OptionsMenu* OptionsMenu::GetInstance()
