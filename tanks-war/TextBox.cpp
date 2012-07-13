@@ -50,7 +50,7 @@ void TextBox::Show(sf::RenderWindow & App)
 
 void TextBox::HandleEvent(sf::Event & Event)
 {
-	if(Event.Type == sf::Event::MouseButtonPressed && m_fRect.Contains(Event.MouseButton.X, Event.MouseButton.Y) )
+	if(Event.Type == sf::Event::MouseButtonPressed && m_fRect.Contains((float)(Event.MouseButton.X), (float)(Event.MouseButton.Y)) )
 	{
 		m_state = true;
 		SetActive(true);

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#ifndef JOINLOBBY_H
+#define JOINLOBBY_H
 class JoinGameLobby : public cScreen
 {
 public:
@@ -19,3 +21,4 @@ private:
 	void Init();
 	bool m_Inited;
 };
+#endif

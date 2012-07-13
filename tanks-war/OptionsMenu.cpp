@@ -32,7 +32,7 @@ int OptionsMenu::Run(sf::RenderWindow & App)
 	while(Running)
 	{
 		App.Clear();
-
+		App.Draw(m_background);
 		while(App.GetEvent(m_Event))
 		{
 			if(m_Event.Type == sf::Event::Closed)
@@ -81,6 +81,8 @@ void OptionsMenu::Init()
 	m_playerNickBox->SetLabel(sf::String("Your nick: "), 30.f, sf::Color(255,110,0,255), 4.f);
 
 	m_Inited = true;
+
+	m_background.SetImage(gResMng.Get_Image("CONTENT//tlo-test.png"));
 }
 
 bool OptionsMenu::readDataFromXmlConfigFile()

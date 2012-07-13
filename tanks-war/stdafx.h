@@ -11,6 +11,8 @@
 #include <tchar.h>
 #include <iostream>
 #include <sstream>
+#include <math.h>
+#include <list>
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -24,7 +26,9 @@
 #include "GameManager.h"
 #include "JoinGameLobby.h"
 #include "TextBox.h"
-
+#include "Game.h"
+#include "Player.h"
+#include "Bullet.h"
 
 #include "TinyXML\tinyxml.h"
 

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#ifndef TEXTBOX_H
+#define TEXTBOX_H
 class TextBox
 {
 public:
@@ -35,3 +37,4 @@ private:
 	bool m_state;
 	sf::Color ActiveColor, nonActiveColor;
 };
+#endif

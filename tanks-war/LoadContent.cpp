@@ -66,7 +66,10 @@ void LoadAll::Run()
 	// PUT HERE ALL CONTENT TO LOAD
 
 	gResMng.Load_Image("CONTENT//tlo-test.png");
-	gResMng.Load_Image("CONTENT//pokerface.png");
+	gResMng.Load_Image("CONTENT//cannon.png");
+	gResMng.Load_Image("CONTENT//bullet.png");
+	gResMng.Load_Image("CONTENT//tank.png");
+	gResMng.Load_Image("CONTENT//mapa-test.jpg");
 
 	done = true;
 }

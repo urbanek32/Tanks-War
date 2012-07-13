@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#ifndef OPTIONSMENU_H
+#define OPTIONsMENU_H
 class OptionsMenu : public cScreen
 {
 public:
@@ -18,7 +20,8 @@ private:
 
 	bool Running; // for main loop while
 	
-	
+	sf::Sprite m_background;
+
 	sf::String player_nick, player_color, player_tankType; // helpers for XML
 	std::string attr,t,elemName; // helpers for XML
 
@@ -31,3 +34,4 @@ private:
 	bool m_Inited;
 
 };
+#endif

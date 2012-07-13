@@ -1,6 +1,8 @@
 #include "stdafx.h"
 
 
+#ifndef MAINMENU_H
+#define MAINMENU_H
 class MainMenu : public cScreen
 {
 public:
@@ -22,3 +24,4 @@ private:
 
 	bool m_Running;
 };
+#endif

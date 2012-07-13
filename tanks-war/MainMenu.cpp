@@ -31,7 +31,7 @@ int MainMenu::Run(sf::RenderWindow & App)
 			if(m_Event.Type == sf::Event::MouseButtonPressed && m_joinGameRect.Contains(m_Event.MouseButton.X, m_Event.MouseButton.Y) )
 			{
 				// GO TO JOINLOBBY
-				return 3;
+				return 4;
 			}
 
 			if(m_Event.Type == sf::Event::MouseButtonPressed && m_optionsRect.Contains(m_Event.MouseButton.X, m_Event.MouseButton.Y) )

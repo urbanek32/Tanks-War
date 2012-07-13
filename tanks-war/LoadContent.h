@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#ifndef LOADCONTENT_H
+#define LOADCONTENT_H
 class LoadContent : public cScreen
 {
 public:
@@ -43,3 +45,4 @@ private:
 
 
 };
+#endif

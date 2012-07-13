@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#ifndef GAMEMANAGER_H
+#define GAMEMANAGER_H
 enum GameState
 {
 	Loading, ShowingMenu, Options, Joining, Playing, Exiting
@@ -17,11 +19,13 @@ public:
 	
 private:
 	// pointers to screens
-	LoadContent *m_loadContent;
-	MainMenu *m_Menu;
-	OptionsMenu *m_Options;
+	class LoadContent *m_loadContent;
+	class MainMenu *m_Menu;
+	class OptionsMenu *m_Options;
 	class JoinGameLobby *m_joinGameLobby;
+	class Game *m_game;
 
 	std::vector<cScreen*> m_Screens;
 	int m_screen;
 };
+#endif
