@@ -21,5 +21,6 @@ private:
 	sf::View *m_View;
 
 	class Player *m_player;
+	class EnemyAI *m_enemy;
 };
 #endif

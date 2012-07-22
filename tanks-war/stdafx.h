@@ -29,6 +29,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "Bullet.h"
+#include "EnemyAI.h"
 
 #include "TinyXML\tinyxml.h"
 

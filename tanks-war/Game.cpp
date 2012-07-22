@@ -34,22 +34,6 @@ int Game::Run(sf::RenderWindow & App)
 				return 1;
 			}
 
-			if(m_Event.Type == sf::Event::KeyPressed && m_Event.Key.Code == sf::Key::Right)
-			{
-				m_View->Move(5,0);
-			}
-			if(m_Event.Type == sf::Event::KeyPressed && m_Event.Key.Code == sf::Key::Left)
-			{
-				m_View->Move(-5,0);
-			}
-			if(m_Event.Type == sf::Event::KeyPressed && m_Event.Key.Code == sf::Key::Up)
-			{
-				m_View->Move(0,-5);
-			}
-			if(m_Event.Type == sf::Event::KeyPressed && m_Event.Key.Code == sf::Key::Down)
-			{
-				m_View->Move(0,5);
-			}
 
 			if(m_Event.Type == sf::Event::MouseWheelMoved && m_Event.MouseWheel.Delta > 0)
 			{
@@ -67,8 +51,11 @@ int Game::Run(sf::RenderWindow & App)
 		App.SetView(*m_View);
 
 		App.Draw(m_map);
+		m_enemy->Update(App, m_player->GetPlayerPosition() );
 		m_player->Update(App);
 		m_View->SetCenter(m_player->GetPlayerPosition().x ,m_player->GetPlayerPosition().y);
+
+		
 
 
 		App.SetView(App.GetDefaultView());
@@ -81,7 +68,7 @@ sf::String tdebug;
 tdebug.SetFont(LoadContent::GetInstance()->m_font2);
 tdebug.SetSize(20);
 bufor << "FPS = " << _Framerate <<"\nv= " << m_player->GetPlayerSpeed() << "\npoz= " << m_player->GetPlayerPosition().x << " " <<m_player->GetPlayerPosition().y;
-bufor << "\n* = " << m_player->GetPlayerRotation() << "\nPociskow = " << m_player->m_Bullets.size();
+bufor << "\n* = " << m_player->GetPlayerRotation() << "\nBullets alive = " << m_player->m_Bullets.size();
 tdebug.SetText(bufor.str());
 App.Draw(tdebug);		
 #pragma endregion		
@@ -106,7 +93,7 @@ void Game::Init()
 
 	m_View = new sf::View(sf::FloatRect(0,0,1300,700));
 
-	
+	m_enemy = new EnemyAI(sf::Vector2f(700,200), 3.f, 400.f);
 
 	m_inited = true;
 }

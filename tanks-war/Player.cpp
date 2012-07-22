@@ -5,7 +5,7 @@ static const double M_PI=3.14159265358979323846f;
 
 
 
-Player::Player() : m_maxPlayerSpeed(7.0), m_maxPlayerBackSpeed(-3.0)
+Player::Player() : m_maxPlayerSpeed(400.0), m_maxPlayerBackSpeed(-300.0)
 {
 	m_inited = false;
 	m_V = 0.f;
@@ -23,11 +23,11 @@ void Player::Update(sf::RenderWindow & App)
 
 	const sf::Input & _input = App.GetInput();
 
-		if(_input.IsKeyDown(sf::Key::A)) { m_rotationDegree -= 2; m_rotation=2.0;  m_player.Rotate(m_rotation); } // turn LEFT
-		if(_input.IsKeyDown(sf::Key::D)) { m_rotationDegree += 2; m_rotation=-2.0; m_player.Rotate(m_rotation); } // turn RIGHT
+		if(_input.IsKeyDown(sf::Key::A)) { m_rotationDegree -= 1; m_rotation=1.0;  m_player.Rotate(m_rotation); } // turn LEFT
+		if(_input.IsKeyDown(sf::Key::D)) { m_rotationDegree += 1; m_rotation=-1.0; m_player.Rotate(m_rotation); } // turn RIGHT
 
-		if(_input.IsKeyDown(sf::Key::W)) { m_V += 0.15  ;    }
-		if(_input.IsKeyDown(sf::Key::S)) { m_V -= 0.10  ;    }
+		if(_input.IsKeyDown(sf::Key::W)) { m_V += 3.00  ;    }
+		if(_input.IsKeyDown(sf::Key::S)) { m_V -= 1.50  ;    }
 		if(_input.IsKeyDown(sf::Key::Space)) { m_V = 0.0 ;  }
 
 		 
@@ -71,8 +71,8 @@ void Player::Update(sf::RenderWindow & App)
 		m_disVec.x += m_V * tab_cos[m_rotationDegree];
         m_disVec.y += m_V * tab_sin[m_rotationDegree];
 
-		if( m_disVec.x >= 1 || m_disVec.x <= - 1 ) { m_playerPozVec.x += int(m_disVec.x); m_disVec.x = m_disVec.x - int( m_disVec.x ); }
-        if( m_disVec.y >= 1 || m_disVec.y <= - 1 ) { m_playerPozVec.y += int(m_disVec.y); m_disVec.y = m_disVec.y - int( m_disVec.y ); }
+		if( m_disVec.x >= 1 || m_disVec.x <= - 1 ) { m_playerPozVec.x += int(m_disVec.x) * App.GetFrameTime(); m_disVec.x = m_disVec.x - int( m_disVec.x ); }
+        if( m_disVec.y >= 1 || m_disVec.y <= - 1 ) { m_playerPozVec.y += int(m_disVec.y) * App.GetFrameTime(); m_disVec.y = m_disVec.y - int( m_disVec.y ); }
 		
 		
 		m_player.SetPosition(m_playerPozVec.x, m_playerPozVec.y);
@@ -110,7 +110,7 @@ void Player::Init()
 	m_cannon.SetImage(gResMng.Get_Image("CONTENT//cannon.png"));
 	m_cannon.SetCenter(m_cannon.GetSize().x / 3.5, m_cannon.GetSize().y /2 );
 	
-	m_playerPozVec = sf::Vector2f(500, 300);
+	m_playerPozVec = sf::Vector2f(200, 300);
 	
 	m_inited = true;
 }
