@@ -5,19 +5,16 @@
 class Bullet
 {
 public:
+	Bullet();
 	Bullet(sf::RenderWindow & App, sf::Vector2f StartPosition, float Rotation);
 
 	// main function to draw and update bullet's position
 	void Update(sf::RenderWindow & App);
 
 	// returns if bullet is ready to delete
-	bool isAlive();
+	bool toDelete();
 
-
-private:
-	// mouse vector position
-	sf::Vector2f m_MousePos;
-
+protected:
 	// bullet displacement
 	sf::Vector2f m_BulletDis;
 
@@ -25,19 +22,25 @@ private:
 	sf::Vector2f m_StartPos;
 
 	// rotation angle
-	float m_rotation;
+	float m_Rotation;
 
 	// bullet's speed
 	float m_V;
 
 	// if true delete bullet
-	bool m_alive;
+	bool m_ToDelete;
 
 	// sprite of bullet
-	sf::Sprite m_bullet;
+	sf::Sprite m_Bullet;
 
 	// range/lifetime of bullet
-	int m_lifetime;
+	int m_Lifetime;
+
+private:
+	// mouse vector position
+	sf::Vector2f m_MousePos;
+
+
 
 };
 #endif

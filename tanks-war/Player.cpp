@@ -108,7 +108,7 @@ void Player::Init()
 	
 
 	m_cannon.SetImage(gResMng.Get_Image("CONTENT//cannon.png"));
-	m_cannon.SetCenter(m_cannon.GetSize().x / 3.5, m_cannon.GetSize().y /2 );
+	m_cannon.SetCenter(m_cannon.GetSize().x / 3.5f, m_cannon.GetSize().y /2.f );
 	
 	m_playerPozVec = sf::Vector2f(200, 300);
 	
@@ -146,15 +146,15 @@ void Player::UpdateBullets(sf::RenderWindow & App)
 	{
 		for(std::list<class Bullet*>::const_iterator iter = m_Bullets.begin(); iter != m_Bullets.end(); )
 		{
-			if( (*iter)->isAlive() )
-			{
-				(*iter)->Update(App);
-				++iter;
-			}
-			else
+			if( (*iter)->toDelete() )
 			{
 				delete (*iter);
 				iter = m_Bullets.erase(iter);
+			}
+			else
+			{
+				(*iter)->Update(App);
+				iter++;
 			}
 
 		} // end for

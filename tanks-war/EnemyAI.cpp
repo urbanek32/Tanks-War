@@ -19,7 +19,7 @@ EnemyAI::EnemyAI(sf::Vector2f StartPosition, float Speed, float Range)
 
 	m_shape = sf::Shape::Circle(m_Position, m_range, sf::Color(0,0,0,0), 2.f, sf::Color(255,0,0,255));
 
-
+	m_ReloadTime = 1.f;
 }
 
 void EnemyAI::Update(sf::RenderWindow & App, sf::Vector2f kTargetXY)
@@ -28,7 +28,7 @@ void EnemyAI::Update(sf::RenderWindow & App, sf::Vector2f kTargetXY)
 	m_enemyCannon.SetPosition(m_Position);
 	UpdateBullets(App);
 
-	float _d = sqrt( (kTargetXY.x - m_enemy.GetPosition().x) * (kTargetXY.x - m_enemy.GetPosition().x) + (kTargetXY.y - m_enemy.GetPosition().y) * (kTargetXY.y - m_enemy.GetPosition().y) );
+	_d = sqrt( (kTargetXY.x - m_enemy.GetPosition().x) * (kTargetXY.x - m_enemy.GetPosition().x) + (kTargetXY.y - m_enemy.GetPosition().y) * (kTargetXY.y - m_enemy.GetPosition().y) );
 
 	// jak jestem w zasiêgu to mnie goñ i zmieñ kolor
 	if(_d <= m_range && _d >= 10.f)
@@ -68,19 +68,22 @@ App.Draw(tdebug);
 
 void EnemyAI::ChooseTarget(sf::Vector2f TargetXY)
 {
-
 	m_randomTarget = TargetXY;
 
-	m_enemyDis.x = m_Position.x - m_randomTarget.x;
-	m_enemyDis.y = m_Position.y - m_randomTarget.y;
+	if(m_Clock2.GetElapsedTime() >= 0.25f)
+	{
+		m_enemyDis.x = m_Position.x - m_randomTarget.x;
+		m_enemyDis.y = m_Position.y - m_randomTarget.y;
 
-	float _DLen = sqrt(m_enemyDis.x * m_enemyDis.x + m_enemyDis.y * m_enemyDis.y);
-	m_enemyDis.x /= _DLen;
-	m_enemyDis.y /= _DLen;
+		_DLen = sqrt(m_enemyDis.x * m_enemyDis.x + m_enemyDis.y * m_enemyDis.y);
+		m_enemyDis.x /= _DLen;
+		m_enemyDis.y /= _DLen;
 
-	m_enemyDis.x *= m_Speed;
-	m_enemyDis.y *= m_Speed;
+		m_enemyDis.x *= m_Speed;
+		m_enemyDis.y *= m_Speed;
 
+		m_Clock2.Reset();
+	}
 
 	m_xH = m_Position.x - m_randomTarget.x;
 	m_yH = m_Position.y - m_randomTarget.y;
@@ -92,27 +95,30 @@ void EnemyAI::ChooseTarget(sf::Vector2f TargetXY)
 
 void EnemyAI::Shoot(sf::RenderWindow & App)
 {
-	m_Bullets.push_back(new Bullet(App, m_enemyCannon.GetPosition(), m_rotation));
+	if(m_Clock.GetElapsedTime() > m_ReloadTime)
+	{
+		m_Bullets.push_back(new EnemyBullet(m_enemyCannon.GetPosition(), m_randomTarget, m_rotation));
+		m_Clock.Reset();
+	}
 }
 
 void EnemyAI::UpdateBullets(sf::RenderWindow & App)
 {
 	if(m_Bullets.size() > 0)
 	{
-		for(std::list<class Bullet*>::const_iterator iter = m_Bullets.begin(); iter != m_Bullets.end(); )
+		for(std::list<class EnemyBullet*>::const_iterator iter = m_Bullets.begin(); iter != m_Bullets.end(); )
 		{
-			if( (*iter)->isAlive() )
-			{
-				(*iter)->Update(App);
-				++iter;
-			}
-			else
+			if( (*iter)->toDelete() )
 			{
 				delete (*iter);
 				iter = m_Bullets.erase(iter);
 			}
+			else
+			{
+				(*iter)->Update(App);
+				iter++;
+			}
 
 		} // end for
-
 	} // end if
 }
