@@ -6,7 +6,7 @@ class EnemyBullet : public Bullet
 {
 public:
 	EnemyBullet();
-	EnemyBullet(sf::Vector2f StartPosition, sf::Vector2f TargetPosition, float Rotation);
+	EnemyBullet(sf::Vector2f StartPosition, sf::Vector2f TargetPosition, float Rotation, int BulletDamage);
 
 private:
 	// target XY

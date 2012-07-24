@@ -6,7 +6,7 @@ class Player
 {
 public:
 	Player();
-	
+	// main function to draw, update player's position and bullets
 	void Update(sf::RenderWindow & App);
 
 	// returns current player's position
@@ -24,12 +24,23 @@ public:
 	// returns reloading state
 	bool isReloading();
 
+	// returns sf::Sprite for Collision test
+	sf::Sprite GetSprite();
+
+	//returns player's health points
+	int GetPlayerHP();
+
+	// add damage to hp. Die if hp <= 0
+	void Hited(int Damage);
+
 private:
 	sf::Sprite m_player, m_cannon;
 
+	// once using function to init data
 	bool m_inited;
 	void Init();
 
+	// to managment time
 	sf::Clock m_clock, m_clock2;
 
 	// shoot the bullet
@@ -70,7 +81,8 @@ private:
 	// is reloading
 	bool m_reload;
 
-
+	// Player's HP
+	int m_Health;
 
 };
 #endif

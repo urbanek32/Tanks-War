@@ -111,7 +111,8 @@ void Player::Init()
 	m_cannon.SetCenter(m_cannon.GetSize().x / 3.5f, m_cannon.GetSize().y /2.f );
 	
 	m_playerPozVec = sf::Vector2f(200, 300);
-	
+	m_Health = 100;
+
 	m_inited = true;
 }
 
@@ -137,7 +138,7 @@ float Player::GetPlayerRotation()
 
 void Player::Shoot(sf::RenderWindow & App)
 {
-	m_Bullets.push_back(new Bullet(App, m_cannon.GetPosition(), m_cannonRotation));
+	m_Bullets.push_back(new Bullet(App, m_cannon.GetPosition(), m_cannonRotation, 50));
 }
 
 void Player::UpdateBullets(sf::RenderWindow & App)
@@ -154,10 +155,25 @@ void Player::UpdateBullets(sf::RenderWindow & App)
 			else
 			{
 				(*iter)->Update(App);
-				iter++;
+				++iter;
 			}
 
 		} // end for
 
 	} // end if
+}
+
+sf::Sprite Player::GetSprite()
+{
+	return m_player;
+}
+
+int Player::GetPlayerHP()
+{
+	return m_Health;
+}
+
+void Player::Hited(int Damage)
+{
+	m_Health -= Damage;
 }

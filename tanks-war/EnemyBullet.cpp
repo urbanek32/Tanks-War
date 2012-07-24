@@ -3,10 +3,11 @@
 
 
 EnemyBullet::EnemyBullet() {}
-EnemyBullet::EnemyBullet(sf::Vector2f StartPosition, sf::Vector2f TargetPosition, float Rotation)
+EnemyBullet::EnemyBullet(sf::Vector2f StartPosition, sf::Vector2f TargetPosition, float Rotation, int BulletDamage)
 {
-	m_V = 10.f;
-	m_Lifetime = 0;
+	this->m_V = 10.f;
+	this->m_Lifetime = 0;
+	this->m_Damage = BulletDamage;
 
 	this->m_StartPos = StartPosition;
 	this->m_ToDelete = false;

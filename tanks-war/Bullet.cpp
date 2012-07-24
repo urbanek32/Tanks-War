@@ -1,10 +1,11 @@
 #include "stdafx.h"
 
 Bullet::Bullet() {}
-Bullet::Bullet(sf::RenderWindow & App, sf::Vector2f StartPosition, float Rotation)
+Bullet::Bullet(sf::RenderWindow & App, sf::Vector2f StartPosition, float Rotation, int BulletDamage)
 {
 	m_V = 10.f;
 	m_Lifetime = 0;
+	m_Damage = BulletDamage;
 
 	this->m_StartPos = StartPosition;
 	this->m_ToDelete = false;
@@ -33,7 +34,7 @@ Bullet::Bullet(sf::RenderWindow & App, sf::Vector2f StartPosition, float Rotatio
 void Bullet::Update(sf::RenderWindow & App)
 {
 
-	if(m_Lifetime < 200)
+	if(m_Lifetime < 200 && !m_ToDelete)
 	{
 		m_Bullet.Move(-m_BulletDis);
 		App.Draw(m_Bullet);
@@ -49,4 +50,19 @@ void Bullet::Update(sf::RenderWindow & App)
 bool Bullet::toDelete()
 {
 	return m_ToDelete;
+}
+
+sf::Sprite Bullet::GetSprite()
+{
+	return m_Bullet;
+}
+
+void Bullet::SetToDelete()
+{
+	m_ToDelete = true;
+}
+
+int Bullet::GetBulletDamage()
+{
+	return m_Damage;
 }

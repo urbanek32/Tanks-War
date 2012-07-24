@@ -4,11 +4,13 @@
 static const double M_PI=3.14159265358979323846f;
 
 
-EnemyAI::EnemyAI(sf::Vector2f StartPosition, float Speed, float Range)
+EnemyAI::EnemyAI(sf::Vector2f StartPosition, float Speed, float Range, int HealthPoints)
 {
 	m_Position = StartPosition;
 	m_Speed = Speed;
 	m_range = Range;
+	m_HP = HealthPoints;
+	m_ToDelete = false;
 
 	m_enemy.SetImage(gResMng.Get_Image("CONTENT//tank1.png"));
 	m_enemy.SetCenter(m_enemy.GetSize().x/2, m_enemy.GetSize().y/2);
@@ -24,33 +26,35 @@ EnemyAI::EnemyAI(sf::Vector2f StartPosition, float Speed, float Range)
 
 void EnemyAI::Update(sf::RenderWindow & App, sf::Vector2f kTargetXY)
 {
-	m_Position = m_enemy.GetPosition();
-	m_enemyCannon.SetPosition(m_Position);
-	UpdateBullets(App);
-
-	_d = sqrt( (kTargetXY.x - m_enemy.GetPosition().x) * (kTargetXY.x - m_enemy.GetPosition().x) + (kTargetXY.y - m_enemy.GetPosition().y) * (kTargetXY.y - m_enemy.GetPosition().y) );
-
-	// jak jestem w zasiêgu to mnie goñ i zmieñ kolor
-	if(_d <= m_range && _d >= 10.f)
+	if( isAlive() )
 	{
-		ChooseTarget(kTargetXY);
-		Shoot(App);
-		m_enemy.Move(-m_enemyDis);
-		m_shape = sf::Shape::Circle(m_enemy.GetPosition(), m_range, sf::Color(255,0,0,75), 2.f, sf::Color(255,0,0,255));
+		m_Position = m_enemy.GetPosition();
+		m_enemyCannon.SetPosition(m_Position);
+		UpdateBullets(App);
+
+		_d = sqrt( (kTargetXY.x - m_enemy.GetPosition().x) * (kTargetXY.x - m_enemy.GetPosition().x) + (kTargetXY.y - m_enemy.GetPosition().y) * (kTargetXY.y - m_enemy.GetPosition().y) );
+
+		// jak jestem w zasiêgu to mnie goñ i zmieñ kolor
+		if(_d <= m_range && _d >= 10.f)
+		{
+			ChooseTarget(kTargetXY);
+			Shoot(App);
+			m_enemy.Move(-m_enemyDis);
+			m_shape = sf::Shape::Circle(m_enemy.GetPosition(), m_range, sf::Color(255,0,0,75), 2.f, sf::Color(255,0,0,255));
 		
-	}
-	else
-	// jak NIE jestem w zasiêgu to stój i zmieñ kolor na domyœlny
-	{
-		m_shape = sf::Shape::Circle(m_enemy.GetPosition(), m_range, sf::Color(0,0,0,0), 2.f, sf::Color(255,0,0,255));
-	}
+		}
+		else
+		// jak NIE jestem w zasiêgu to stój i zmieñ kolor na domyœlny
+		{
+			m_shape = sf::Shape::Circle(m_enemy.GetPosition(), m_range, sf::Color(0,0,0,0), 2.f, sf::Color(255,0,0,255));
+		}
 
 
 
 	
-	App.Draw(m_enemy);
-	App.Draw(m_enemyCannon);
-	App.Draw(m_shape);
+		App.Draw(m_enemy);
+		App.Draw(m_enemyCannon);
+		App.Draw(m_shape);
 
 #pragma region DEBUG INFO
 std::ostringstream bufor;
@@ -58,12 +62,12 @@ sf::String tdebug;
 tdebug.SetFont(LoadContent::GetInstance()->m_font2);
 tdebug.SetSize(20); tdebug.SetColor(sf::Color::Red);
 tdebug.SetPosition(m_enemy.GetPosition());
-bufor << "Target = " << m_randomTarget.x <<" " << m_randomTarget.y << "\nPoz= " << m_enemy.GetPosition().x << " " <<m_enemy.GetPosition().y;
-bufor << "\nEnemyDis = " << -m_enemyDis.x << " " << -m_enemyDis.y;
+bufor << "Target = " << m_randomTarget.x <<" " << m_randomTarget.y << "\nHP= " << GetEnemyHP();
 tdebug.SetText(bufor.str());
 App.Draw(tdebug);		
 #pragma endregion	
 
+	} // end if isAlive
 }
 
 void EnemyAI::ChooseTarget(sf::Vector2f TargetXY)
@@ -97,7 +101,7 @@ void EnemyAI::Shoot(sf::RenderWindow & App)
 {
 	if(m_Clock.GetElapsedTime() > m_ReloadTime)
 	{
-		m_Bullets.push_back(new EnemyBullet(m_enemyCannon.GetPosition(), m_randomTarget, m_rotation));
+		m_Bullets.push_back(new EnemyBullet(m_enemyCannon.GetPosition(), m_randomTarget, m_rotation, 5));
 		m_Clock.Reset();
 	}
 }
@@ -116,9 +120,37 @@ void EnemyAI::UpdateBullets(sf::RenderWindow & App)
 			else
 			{
 				(*iter)->Update(App);
-				iter++;
+				++iter;
 			}
 
 		} // end for
 	} // end if
+}
+
+sf::Sprite EnemyAI::GetSprite()
+{
+	return m_enemy;
+}
+
+void EnemyAI::SetToDelete()
+{
+	m_ToDelete = true;
+}
+
+int EnemyAI::GetEnemyHP()
+{
+	return m_HP;
+}
+
+void EnemyAI::Hited(int Damage)
+{
+	m_HP -= Damage;
+
+	if(m_HP <= 0)
+		SetToDelete();
+}
+
+bool EnemyAI::isAlive()
+{
+	return !m_ToDelete;
 }

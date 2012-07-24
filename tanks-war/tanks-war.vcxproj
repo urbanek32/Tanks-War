@@ -80,6 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="cScreen.h" />
     <ClInclude Include="EnemyAI.h" />
     <ClInclude Include="EnemyBullet.h" />
@@ -99,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="EnemyAI.cpp" />
     <ClCompile Include="EnemyBullet.cpp" />
     <ClCompile Include="Game.cpp" />

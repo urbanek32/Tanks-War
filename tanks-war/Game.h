@@ -6,10 +6,12 @@ class Game : public cScreen
 {
 public:
 	Game();
+	// main loop function
 	virtual int Run(sf::RenderWindow & App);
 	
 
 private:
+	// once using function to init data
 	void Init();
 	bool m_inited;
 
@@ -21,6 +23,17 @@ private:
 	sf::View *m_View;
 
 	class Player *m_player;
-	class EnemyAI *m_enemy;
+
+	std::list<class EnemyAI*> m_Enemies;
+
+	float m_Framerate;
+
+	void CheckCollision();
+
+	void UpdateEnemies(sf::RenderWindow & App);
+
+	void SpawnRandomEnemy();
+
+	sf::Clock m_Clock;
 };
 #endif

@@ -1,20 +1,27 @@
-﻿Build started 2012-07-13 16:20:17.
-     1>Project "C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\tanks-war.vcxproj" on node 2 (rebuild target(s)).
-     1>_PrepareForClean:
-         Deleting file "Release\tanks-war - client.lastbuildstate".
-       InitializeBuildStatus:
+﻿Build started 2012-07-24 15:22:53.
+     1>Project "C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\tanks-war.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
          Creating "Release\tanks-war - client.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Release\tanks-war - client.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
          stdafx.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\tanks-war - client.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Bullet.cpp Game.cpp GameManager.cpp Player.cpp ResourceManager.cpp JoinGameLobby.cpp LoadContent.cpp MainMenu.cpp OptionsMenu.cpp MAIN.cpp TextBox.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\tanks-war - client.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Bullet.cpp Collision.cpp EnemyAI.cpp EnemyBullet.cpp Game.cpp GameManager.cpp Player.cpp ResourceManager.cpp JoinGameLobby.cpp LoadContent.cpp MainMenu.cpp OptionsMenu.cpp MAIN.cpp TextBox.cpp
          Bullet.cpp
+         Collision.cpp
+     1>Collision.cpp(74): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>Collision.cpp(112): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Collision.cpp(112): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Collision.cpp(113): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Collision.cpp(113): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Collision.cpp(162): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>Collision.cpp(163): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+         EnemyAI.cpp
+         EnemyBullet.cpp
          Game.cpp
-     1>Game.cpp(91): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>Game.cpp(91): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Game.cpp(155): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Game.cpp(155): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
          GameManager.cpp
          Player.cpp
-     1>Player.cpp(111): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
          ResourceManager.cpp
          JoinGameLobby.cpp
          LoadContent.cpp
@@ -33,6 +40,7 @@
      1>MainMenu.cpp(117): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
          OptionsMenu.cpp
          MAIN.cpp
+     1>MAIN.cpp(11): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
          TextBox.cpp
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt TinyXML\tinystr.cpp TinyXML\tinyxml.cpp TinyXML\tinyxmlerror.cpp TinyXML\tinyxmlparser.cpp
          tinystr.cpp
@@ -41,6 +49,9 @@
          tinyxmlparser.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Patryk\Documents\GitHub\Tanks-War\Release\tanks-war - client.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\lib" "sfml-main.lib" "sfml-system-s.lib" "sfml-graphics-s.lib" "sfml-network-s.lib" "sfml-window-s.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\tanks-war - client.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Patryk\Documents\GitHub\Tanks-War\Release\tanks-war - client.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Patryk\Documents\GitHub\Tanks-War\Release\tanks-war - client.lib" /MACHINE:X86 Release\Bullet.obj
+         Release\Collision.obj
+         Release\EnemyAI.obj
+         Release\EnemyBullet.obj
          Release\Game.obj
          Release\GameManager.obj
          Release\Player.obj
@@ -65,8 +76,8 @@
        FinalizeBuildStatus:
          Deleting file "Release\tanks-war - client.unsuccessfulbuild".
          Touching "Release\tanks-war - client.lastbuildstate".
-     1>Done Building Project "C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\tanks-war.vcxproj" (rebuild target(s)).
+     1>Done Building Project "C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\tanks-war.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:03.09
+Time Elapsed 00:00:03.13

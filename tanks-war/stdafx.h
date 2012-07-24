@@ -31,6 +31,7 @@
 #include "Bullet.h"
 #include "EnemyAI.h"
 #include "EnemyBullet.h"
+#include "Collision.h"
 
 #include "TinyXML\tinyxml.h"
 

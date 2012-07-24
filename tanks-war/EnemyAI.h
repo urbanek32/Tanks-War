@@ -6,13 +6,28 @@
 class EnemyAI
 {
 public:
-	EnemyAI(sf::Vector2f StartPos, float Speed, float Range);
+	EnemyAI(sf::Vector2f StartPos, float Speed, float Range, int HealthPoints);
 
 	// main function to draw and update AI and bullets
 	void Update(sf::RenderWindow & App, sf::Vector2f TargetXY);
 
 	// container of bullets
 	std::list<class EnemyBullet*> m_Bullets;
+
+	// returns sf::Sprite for Collision test
+	sf::Sprite GetSprite();
+
+	// set current enemy to immediately delete
+	void SetToDelete();
+
+	// returns current enemy's health
+	int GetEnemyHP();
+
+	// returns true if enemy is alive
+	bool isAlive();
+
+	// add damage to enemy. If less then HP auto-destroy
+	void Hited(int Damage);
 
 private:
 	sf::Sprite m_enemy, m_enemyCannon;
@@ -55,5 +70,11 @@ private:
 
 	// pause between shoots
 	float m_ReloadTime;
+
+	// Enemy's health points
+	int m_HP;
+
+	// if true delete enemy
+	bool m_ToDelete;
 };
 #endif
