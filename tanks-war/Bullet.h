@@ -15,7 +15,7 @@ public:
 	bool toDelete();
 
 	// returns sf::Sprite to test Collisions
-	sf::Sprite GetSprite();
+	sf::Sprite & GetSprite();
 
 	// set current bullet to immediately delete
 	void SetToDelete();
@@ -47,6 +47,9 @@ protected:
 
 	// bullet's damage
 	int m_Damage;
+
+	// helpers to count displacement
+	float DLen, Dx, Dy; 
 
 private:
 	// mouse vector position

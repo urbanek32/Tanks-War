@@ -72,6 +72,8 @@ void LoadAll::Run()
 	gResMng.Load_Image("CONTENT//cannon1.png");
 	gResMng.Load_Image("CONTENT//tank1.png");
 	gResMng.Load_Image("CONTENT//mapa-test.jpg");
+	gResMng.Load_Image("CONTENT//mur.jpg");
+	gResMng.Load_Image("CONTENT//mur3.jpg");
 
 	done = true;
 }

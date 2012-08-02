@@ -11,12 +11,15 @@ class GameManager
 {
 public:
 	GameManager();
+
 	static GameManager* GetInstance();
+
 	void run(sf::RenderWindow & App);
 
 	GameState _gameState;
 
-	
+	sf::SocketUDP m_SocketUDP;
+
 private:
 	// pointers to screens
 	class LoadContent *m_loadContent;

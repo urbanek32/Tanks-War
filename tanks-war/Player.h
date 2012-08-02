@@ -19,13 +19,13 @@ public:
 	float GetPlayerRotation();
 
 	// player's bullet's container
-	std::list<class Bullet*> m_Bullets;
+	std::deque<class Bullet*> m_Bullets;
 
 	// returns reloading state
 	bool isReloading();
 
 	// returns sf::Sprite for Collision test
-	sf::Sprite GetSprite();
+	sf::Sprite & GetSprite();
 
 	//returns player's health points
 	int GetPlayerHP();
@@ -60,7 +60,7 @@ private:
 	int m_rotationDegree;
 
 	// variable to rotate player
-	float m_rotation;
+	int m_rotation;
 
 	// max player's speed and backspeed
 	const double m_maxPlayerSpeed;

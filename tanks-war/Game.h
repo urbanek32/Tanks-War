@@ -24,8 +24,8 @@ private:
 
 	class Player *m_player;
 
-	std::list<class EnemyAI*> m_Enemies;
-
+	std::deque<class EnemyAI*> m_Enemies;
+	
 	float m_Framerate;
 
 	void CheckCollision();
@@ -34,6 +34,8 @@ private:
 
 	void SpawnRandomEnemy();
 
-	sf::Clock m_Clock;
+	sf::Clock m_Clock, m_clock2;
+
+	class MapManager *m_MapMng;
 };
 #endif

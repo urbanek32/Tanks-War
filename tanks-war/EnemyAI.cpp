@@ -39,7 +39,7 @@ void EnemyAI::Update(sf::RenderWindow & App, sf::Vector2f kTargetXY)
 		{
 			ChooseTarget(kTargetXY);
 			Shoot(App);
-			m_enemy.Move(-m_enemyDis);
+			m_enemy.Move(-m_enemyDis * App.GetFrameTime() );
 			m_shape = sf::Shape::Circle(m_enemy.GetPosition(), m_range, sf::Color(255,0,0,75), 2.f, sf::Color(255,0,0,255));
 		
 		}
@@ -99,7 +99,7 @@ void EnemyAI::ChooseTarget(sf::Vector2f TargetXY)
 
 void EnemyAI::Shoot(sf::RenderWindow & App)
 {
-	if(m_Clock.GetElapsedTime() > m_ReloadTime)
+	if(m_Clock.GetElapsedTime() >= m_ReloadTime)
 	{
 		m_Bullets.push_back(new EnemyBullet(m_enemyCannon.GetPosition(), m_randomTarget, m_rotation, 5));
 		m_Clock.Reset();
@@ -110,7 +110,7 @@ void EnemyAI::UpdateBullets(sf::RenderWindow & App)
 {
 	if(m_Bullets.size() > 0)
 	{
-		for(std::list<class EnemyBullet*>::const_iterator iter = m_Bullets.begin(); iter != m_Bullets.end(); )
+		for(std::deque<class EnemyBullet*>::const_iterator iter = m_Bullets.begin(); iter != m_Bullets.end(); )
 		{
 			if( (*iter)->toDelete() )
 			{
@@ -127,7 +127,7 @@ void EnemyAI::UpdateBullets(sf::RenderWindow & App)
 	} // end if
 }
 
-sf::Sprite EnemyAI::GetSprite()
+sf::Sprite & EnemyAI::GetSprite()
 {
 	return m_enemy;
 }

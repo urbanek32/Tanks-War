@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tanks-war - client", "tanks-war\tanks-war.vcxproj", "{C5350633-1022-42AA-9358-B50F1F68EA96}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tanks-war - server", "tanks-war - server\tanks-war - server.vcxproj", "{05D95329-49D8-42EF-9E6D-302DA084BA0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +15,10 @@ Global
 		{C5350633-1022-42AA-9358-B50F1F68EA96}.Debug|Win32.Build.0 = Debug|Win32
 		{C5350633-1022-42AA-9358-B50F1F68EA96}.Release|Win32.ActiveCfg = Release|Win32
 		{C5350633-1022-42AA-9358-B50F1F68EA96}.Release|Win32.Build.0 = Release|Win32
+		{05D95329-49D8-42EF-9E6D-302DA084BA0D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{05D95329-49D8-42EF-9E6D-302DA084BA0D}.Debug|Win32.Build.0 = Debug|Win32
+		{05D95329-49D8-42EF-9E6D-302DA084BA0D}.Release|Win32.ActiveCfg = Release|Win32
+		{05D95329-49D8-42EF-9E6D-302DA084BA0D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

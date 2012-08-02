@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include <math.h>
 
-static const double M_PI=3.14159265358979323846f;
+static const float M_PI=3.14159265358979323846f;
 
 
 
@@ -23,8 +23,8 @@ void Player::Update(sf::RenderWindow & App)
 
 	const sf::Input & _input = App.GetInput();
 
-		if(_input.IsKeyDown(sf::Key::A)) { m_rotationDegree -= 1; m_rotation=1.0;  m_player.Rotate(m_rotation); } // turn LEFT
-		if(_input.IsKeyDown(sf::Key::D)) { m_rotationDegree += 1; m_rotation=-1.0; m_player.Rotate(m_rotation); } // turn RIGHT
+		if(_input.IsKeyDown(sf::Key::A)) { m_rotationDegree -= 3; m_rotation = 3; m_player.Rotate( m_rotation ); } // turn LEFT
+		if(_input.IsKeyDown(sf::Key::D)) { m_rotationDegree += 3; m_rotation = -3; m_player.Rotate( m_rotation  ); } // turn RIGHT
 
 		if(_input.IsKeyDown(sf::Key::W)) { m_V += 3.00  ;    }
 		if(_input.IsKeyDown(sf::Key::S)) { m_V -= 1.50  ;    }
@@ -62,14 +62,12 @@ void Player::Update(sf::RenderWindow & App)
 		if(m_rotationDegree > 359) m_rotationDegree = 0;
 		if(m_rotationDegree < 0) m_rotationDegree = 359;
 		
-//		if( kierunek > 359 ) kierunek = 0;
-//      if( kierunek < 0 ) kierunek = 359;
 
         if( m_V > m_maxPlayerSpeed ) m_V = m_maxPlayerSpeed;
         if( m_V <  m_maxPlayerBackSpeed ) m_V = m_maxPlayerBackSpeed;
 
-		m_disVec.x += m_V * tab_cos[m_rotationDegree];
-        m_disVec.y += m_V * tab_sin[m_rotationDegree];
+		m_disVec.x += m_V * cos((M_PI*(m_rotationDegree))/180);
+        m_disVec.y += m_V * sin((M_PI*(m_rotationDegree))/180);
 
 		if( m_disVec.x >= 1 || m_disVec.x <= - 1 ) { m_playerPozVec.x += int(m_disVec.x) * App.GetFrameTime(); m_disVec.x = m_disVec.x - int( m_disVec.x ); }
         if( m_disVec.y >= 1 || m_disVec.y <= - 1 ) { m_playerPozVec.y += int(m_disVec.y) * App.GetFrameTime(); m_disVec.y = m_disVec.y - int( m_disVec.y ); }
@@ -145,7 +143,7 @@ void Player::UpdateBullets(sf::RenderWindow & App)
 {
 	if(m_Bullets.size() > 0)
 	{
-		for(std::list<class Bullet*>::const_iterator iter = m_Bullets.begin(); iter != m_Bullets.end(); )
+		for(std::deque<class Bullet*>::const_iterator iter = m_Bullets.begin(); iter != m_Bullets.end(); )
 		{
 			if( (*iter)->toDelete() )
 			{
@@ -163,7 +161,7 @@ void Player::UpdateBullets(sf::RenderWindow & App)
 	} // end if
 }
 
-sf::Sprite Player::GetSprite()
+sf::Sprite & Player::GetSprite()
 {
 	return m_player;
 }

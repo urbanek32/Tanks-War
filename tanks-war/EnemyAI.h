@@ -12,10 +12,10 @@ public:
 	void Update(sf::RenderWindow & App, sf::Vector2f TargetXY);
 
 	// container of bullets
-	std::list<class EnemyBullet*> m_Bullets;
+	std::deque<class EnemyBullet*> m_Bullets;
 
 	// returns sf::Sprite for Collision test
-	sf::Sprite GetSprite();
+	sf::Sprite & GetSprite();
 
 	// set current enemy to immediately delete
 	void SetToDelete();

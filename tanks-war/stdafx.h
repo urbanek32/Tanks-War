@@ -32,6 +32,8 @@
 #include "EnemyAI.h"
 #include "EnemyBullet.h"
 #include "Collision.h"
+#include "MapManager.h"
+#include "NetworkManager.h"
 
 #include "TinyXML\tinyxml.h"
 

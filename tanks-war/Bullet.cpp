@@ -3,7 +3,7 @@
 Bullet::Bullet() {}
 Bullet::Bullet(sf::RenderWindow & App, sf::Vector2f StartPosition, float Rotation, int BulletDamage)
 {
-	m_V = 10.f;
+	m_V = 700.f;
 	m_Lifetime = 0;
 	m_Damage = BulletDamage;
 
@@ -11,14 +11,14 @@ Bullet::Bullet(sf::RenderWindow & App, sf::Vector2f StartPosition, float Rotatio
 	this->m_ToDelete = false;
 	this->m_Rotation = Rotation;
 
-	this->m_MousePos = App.ConvertCoords(App.GetInput().GetMouseX(), App.GetInput().GetMouseY());
+	m_MousePos = App.ConvertCoords(App.GetInput().GetMouseX(), App.GetInput().GetMouseY());
 
-	this->m_BulletDis.x = m_StartPos.x - m_MousePos.x;
-	this->m_BulletDis.y = m_StartPos.y - m_MousePos.y;
+	m_BulletDis.x = m_StartPos.x - m_MousePos.x;
+	m_BulletDis.y = m_StartPos.y - m_MousePos.y;
 
-	float _DLen = sqrt(m_BulletDis.x * m_BulletDis.x + m_BulletDis.y * m_BulletDis.y);
-	m_BulletDis.x /= _DLen;
-	m_BulletDis.y /= _DLen;
+	DLen = sqrt(m_BulletDis.x * m_BulletDis.x + m_BulletDis.y * m_BulletDis.y);
+	m_BulletDis.x /= DLen;
+	m_BulletDis.y /= DLen;
 
 	m_BulletDis.x *= m_V;
 	m_BulletDis.y *= m_V;
@@ -26,7 +26,7 @@ Bullet::Bullet(sf::RenderWindow & App, sf::Vector2f StartPosition, float Rotatio
 	m_Bullet.SetImage(gResMng.Get_Image("CONTENT//bullet.png"));
 	m_Bullet.SetScale(0.8f,0.8f);
 	m_Bullet.SetCenter(m_Bullet.GetSize().x/2, m_Bullet.GetSize().y/2);
-	m_Bullet.SetPosition(m_StartPos.x + (-m_BulletDis.x) * 2.8f, m_StartPos.y + (-m_BulletDis.y) * 2.8f);
+	m_Bullet.SetPosition(m_StartPos.x , m_StartPos.y );
 	m_Bullet.SetRotation(-m_Rotation);
 
 }
@@ -36,7 +36,7 @@ void Bullet::Update(sf::RenderWindow & App)
 
 	if(m_Lifetime < 200 && !m_ToDelete)
 	{
-		m_Bullet.Move(-m_BulletDis);
+		m_Bullet.Move(-m_BulletDis * App.GetFrameTime() );
 		App.Draw(m_Bullet);
 		m_Lifetime++;
 	}
@@ -52,7 +52,7 @@ bool Bullet::toDelete()
 	return m_ToDelete;
 }
 
-sf::Sprite Bullet::GetSprite()
+sf::Sprite & Bullet::GetSprite()
 {
 	return m_Bullet;
 }

@@ -1,4 +1,4 @@
-﻿Build started 2012-07-24 15:22:53.
+﻿Build started 2012-07-25 22:42:44.
      1>Project "C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\tanks-war.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\tanks-war - client.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -18,8 +18,8 @@
          EnemyAI.cpp
          EnemyBullet.cpp
          Game.cpp
-     1>Game.cpp(155): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>Game.cpp(155): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Game.cpp(169): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Game.cpp(169): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
          GameManager.cpp
          Player.cpp
          ResourceManager.cpp
@@ -80,4 +80,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.13
+Time Elapsed 00:00:03.21

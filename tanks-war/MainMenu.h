@@ -11,14 +11,17 @@ public:
 
 
 private:
-	sf::Sprite m_background;
+	sf::Sprite m_Background;
 
 	sf::Event m_Event;
 
 	bool m_Inited;
-	sf::String *m_joinGameLabel, *m_optionsLabel, *m_exitGameLabel;
+
+	sf::String *m_SinglePlayerLabel, *m_MultiPlayerLabel, *m_OptionsLabel, *m_ExitGameLabel;
+
 	void ShowMainMenuLabels(sf::RenderWindow & App);
-	sf::FloatRect m_joinGameRect, m_optionsRect, m_exitGameRect;
+
+	sf::FloatRect m_SinglePlayerRect, m_MultiPlayerRect, m_OptionsRect, m_ExitGameRect;
 
 	
 
