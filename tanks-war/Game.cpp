@@ -4,7 +4,7 @@ Game::Game()
 {
 	m_running = true;
 	m_inited = false;
-
+	m_Score = 0;
 }
 
 
@@ -54,7 +54,7 @@ int Game::Run(sf::RenderWindow & App)
 		} // end of events loop
 	
 		CheckCollision();
-	//	SpawnRandomEnemy();
+		SpawnRandomEnemy();
 
 		// PUT HERE: game objects etc
 		App.SetView(*m_View);
@@ -81,6 +81,7 @@ bufor << "FPS = " << m_Framerate << " " << App.GetFrameTime() <<"\nv= " << m_pla
 bufor << "\nEnemies alive = " << m_Enemies.size() << "\n*= " << m_player->GetPlayerRotation();
 bufor << "\nYour hp = " << m_player->GetPlayerHP();
 bufor << "\nView = " << m_View->GetRect().Left << " " << m_View->GetRect().Top;
+bufor << "\nScore = " << m_Score;
 tdebug.SetText(bufor.str());
 App.Draw(tdebug);		
 #pragma endregion		
@@ -102,8 +103,6 @@ void Game::Init()
 	m_player = new Player();
 
 	m_View = new sf::View(sf::FloatRect(0,0,1300,700));
-
-	m_Enemies.push_back(new EnemyAI(sf::Vector2f(700,200), 250.f, 400.f, 200) );
 
 	m_inited = true;
 }
@@ -165,6 +164,7 @@ void Game::UpdateEnemies(sf::RenderWindow & App)
 			{
 				delete (*iter);
 				iter = m_Enemies.erase(iter);
+				m_Score++;
 			}
 		} // end for
 	} // end if
@@ -174,7 +174,7 @@ void Game::SpawnRandomEnemy()
 {
 	if(m_Clock.GetElapsedTime() > 5.f)
 	{
-		m_Enemies.push_back(new EnemyAI(sf::Vector2f(rand()%1000, rand()%700), 3.f, 400.f, 200));
+		m_Enemies.push_back(new EnemyAI(sf::Vector2f(rand()%1000, rand()%700), 300.f, 400.f, 200));
 		m_Clock.Reset();
 	}
 }

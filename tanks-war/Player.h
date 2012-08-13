@@ -6,17 +6,24 @@ class Player
 {
 public:
 	Player();
+
+	// returns instance to this object
+	static Player* GetInstance();
+
 	// main function to draw, update player's position and bullets
 	void Update(sf::RenderWindow & App);
 
 	// returns current player's position
-	sf::Vector2f GetPlayerPosition();
+	sf::Vector2f & GetPlayerPosition();
 
 	// returns current player's speed
-	double GetPlayerSpeed();
+	double & GetPlayerSpeed();
 
 	// return current player's rotation angle
 	float GetPlayerRotation();
+
+	// return current player's cannon's rotation angle
+	float & GetCannonRotation();
 
 	// player's bullet's container
 	std::deque<class Bullet*> m_Bullets;

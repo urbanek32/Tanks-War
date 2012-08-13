@@ -1,4 +1,4 @@
-﻿Build started 2012-08-02 17:53:52.
+﻿Build started 2012-08-13 20:40:52.
      1>Project "C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war - server\tanks-war - server.vcxproj" on node 2 (rebuild target(s)).
      1>_PrepareForClean:
          Deleting file "Debug\tanks-war - server.lastbuildstate".
@@ -20,6 +20,8 @@
          Debug\ServerManager.obj
          Debug\stdafx.obj
          "Debug\MAIN - server.obj"
+     1>sfml-system-s-d.lib(Platform.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'sfml-system-s-d.lib(Platform.obj)' or at 'C:\Users\Patryk\Documents\GitHub\Tanks-War\Debug\vc100.pdb'; linking object as if no debug info
+     1>sfml-system-s-d.lib(Clock.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'sfml-system-s-d.lib(Clock.obj)' or at 'C:\Users\Patryk\Documents\GitHub\Tanks-War\Debug\vc100.pdb'; linking object as if no debug info
      1>sfml-network-s-d.lib(SocketHelper.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'sfml-network-s-d.lib(SocketHelper.obj)' or at 'C:\Users\Patryk\Documents\GitHub\Tanks-War\Debug\vc100.pdb'; linking object as if no debug info
      1>sfml-network-s-d.lib(Http.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'sfml-network-s-d.lib(Http.obj)' or at 'C:\Users\Patryk\Documents\GitHub\Tanks-War\Debug\vc100.pdb'; linking object as if no debug info
      1>sfml-network-s-d.lib(IPAddress.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'sfml-network-s-d.lib(IPAddress.obj)' or at 'C:\Users\Patryk\Documents\GitHub\Tanks-War\Debug\vc100.pdb'; linking object as if no debug info
@@ -36,6 +38,8 @@
          Debug\ServerManager.obj
          Debug\stdafx.obj
          "Debug\MAIN - server.obj"
+     1>sfml-system-s-d.lib(Platform.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'sfml-system-s-d.lib(Platform.obj)' or at 'C:\Users\Patryk\Documents\GitHub\Tanks-War\Debug\vc100.pdb'; linking object as if no debug info
+     1>sfml-system-s-d.lib(Clock.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'sfml-system-s-d.lib(Clock.obj)' or at 'C:\Users\Patryk\Documents\GitHub\Tanks-War\Debug\vc100.pdb'; linking object as if no debug info
      1>sfml-network-s-d.lib(SocketHelper.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'sfml-network-s-d.lib(SocketHelper.obj)' or at 'C:\Users\Patryk\Documents\GitHub\Tanks-War\Debug\vc100.pdb'; linking object as if no debug info
      1>sfml-network-s-d.lib(Http.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'sfml-network-s-d.lib(Http.obj)' or at 'C:\Users\Patryk\Documents\GitHub\Tanks-War\Debug\vc100.pdb'; linking object as if no debug info
      1>sfml-network-s-d.lib(IPAddress.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'sfml-network-s-d.lib(IPAddress.obj)' or at 'C:\Users\Patryk\Documents\GitHub\Tanks-War\Debug\vc100.pdb'; linking object as if no debug info
@@ -50,4 +54,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.92
+Time Elapsed 00:00:01.94

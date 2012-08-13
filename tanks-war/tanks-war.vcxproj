@@ -88,7 +88,9 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="NetworkManager.h" />
+    <ClInclude Include="OnlineGame.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="RemotePlayer.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="JoinGameLobby.h" />
     <ClInclude Include="LoadContent.h" />
@@ -109,7 +111,9 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="NetworkManager.cpp" />
+    <ClCompile Include="OnlineGame.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RemotePlayer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="JoinGameLobby.cpp" />
     <ClCompile Include="LoadContent.cpp" />

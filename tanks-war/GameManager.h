@@ -7,6 +7,8 @@ enum GameState
 	Loading, ShowingMenu, Options, Joining, Playing, Exiting
 };
 
+extern std::map<std::string, std::string>globals;
+
 class GameManager
 {
 public:
@@ -27,6 +29,7 @@ private:
 	class OptionsMenu *m_Options;
 	class JoinGameLobby *m_joinGameLobby;
 	class Game *m_game;
+	class OnlineGame *m_OnlineGame;
 
 	std::vector<cScreen*> m_Screens;
 	int m_screen;

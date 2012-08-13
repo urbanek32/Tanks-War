@@ -1,11 +1,11 @@
-﻿Build started 2012-07-25 22:42:44.
+﻿Build started 2012-08-11 23:21:29.
      1>Project "C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\tanks-war.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\tanks-war - client.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Release\tanks-war - client.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
          stdafx.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\tanks-war - client.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Bullet.cpp Collision.cpp EnemyAI.cpp EnemyBullet.cpp Game.cpp GameManager.cpp Player.cpp ResourceManager.cpp JoinGameLobby.cpp LoadContent.cpp MainMenu.cpp OptionsMenu.cpp MAIN.cpp TextBox.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\tanks-war - client.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Bullet.cpp Collision.cpp EnemyAI.cpp EnemyBullet.cpp Game.cpp GameManager.cpp MapManager.cpp NetworkManager.cpp Player.cpp ResourceManager.cpp JoinGameLobby.cpp LoadContent.cpp MainMenu.cpp OptionsMenu.cpp MAIN.cpp TextBox.cpp
          Bullet.cpp
          Collision.cpp
      1>Collision.cpp(74): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
@@ -18,10 +18,16 @@
          EnemyAI.cpp
          EnemyBullet.cpp
          Game.cpp
-     1>Game.cpp(169): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>Game.cpp(169): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Game.cpp(177): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Game.cpp(177): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
          GameManager.cpp
+         MapManager.cpp
+     1>MapManager.cpp(42): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>MapManager.cpp(42): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         NetworkManager.cpp
          Player.cpp
+     1>Player.cpp(36): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Player.cpp(37): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
          ResourceManager.cpp
          JoinGameLobby.cpp
          LoadContent.cpp
@@ -32,12 +38,16 @@
      1>MainMenu.cpp(37): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>MainMenu.cpp(43): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>MainMenu.cpp(43): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>MainMenu.cpp(99): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>MainMenu.cpp(99): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>MainMenu.cpp(108): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>MainMenu.cpp(108): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>MainMenu.cpp(117): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>MainMenu.cpp(117): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>MainMenu.cpp(49): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>MainMenu.cpp(49): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>MainMenu.cpp(110): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>MainMenu.cpp(110): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>MainMenu.cpp(119): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>MainMenu.cpp(119): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>MainMenu.cpp(128): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>MainMenu.cpp(128): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>MainMenu.cpp(137): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>MainMenu.cpp(137): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
          OptionsMenu.cpp
          MAIN.cpp
      1>MAIN.cpp(11): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
@@ -54,6 +64,8 @@
          Release\EnemyBullet.obj
          Release\Game.obj
          Release\GameManager.obj
+         Release\MapManager.obj
+         Release\NetworkManager.obj
          Release\Player.obj
          Release\ResourceManager.obj
          Release\JoinGameLobby.obj
@@ -80,4 +92,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.21
+Time Elapsed 00:00:04.06

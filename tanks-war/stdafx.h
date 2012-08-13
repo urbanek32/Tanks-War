@@ -34,6 +34,8 @@
 #include "Collision.h"
 #include "MapManager.h"
 #include "NetworkManager.h"
+#include "OnlineGame.h"
+#include "RemotePlayer.h"
 
 #include "TinyXML\tinyxml.h"
 

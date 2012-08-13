@@ -3,7 +3,17 @@
 
 static const float M_PI=3.14159265358979323846f;
 
+#ifdef CPP_0x11
+Player* ptr=nullptr;
+#else
+Player* ptr=NULL;
+#endif
 
+Player* Player::GetInstance()
+{
+	if(ptr==NULL) ptr = new Player();
+	return ptr;
+}
 
 Player::Player() : m_maxPlayerSpeed(400.0), m_maxPlayerBackSpeed(-300.0)
 {
@@ -119,12 +129,12 @@ bool Player::isReloading()
 	return m_reload;
 }
 
-sf::Vector2f Player::GetPlayerPosition()
+sf::Vector2f & Player::GetPlayerPosition()
 {
 	return m_playerPozVec;
 }
 
-double Player::GetPlayerSpeed()
+double & Player::GetPlayerSpeed()
 {
 	return m_V;
 }
@@ -132,6 +142,11 @@ double Player::GetPlayerSpeed()
 float Player::GetPlayerRotation()
 {
 	return m_player.GetRotation();
+}
+
+float & Player::GetCannonRotation()
+{
+	return m_cannonRotation;
 }
 
 void Player::Shoot(sf::RenderWindow & App)

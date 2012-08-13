@@ -25,18 +25,27 @@ private:
 
 	sf::Uint8 m_PacketType;
 
+	void SendAcceptedNewPlayer(sf::SocketUDP & SocketUDP, sf::Packet & Packet, sf::IPAddress & IPToSend, unsigned short PortToSend);
+
 	void ResendPing(sf::SocketUDP & SocketUDP, sf::Packet & Packet, sf::IPAddress & IPToSend, unsigned short PortToSend);
 
 	void AddNewPlayer(sf::Packet & Packet, sf::IPAddress & IP, unsigned short Port);
 
 	void SendPlayerList(sf::SocketUDP & SocketUDP, sf::IPAddress & IPToSend, unsigned short PortToSend);
 
+	void ManageArrivedData(sf::SocketUDP & SocketUDP, sf::Packet & Packet, sf::IPAddress & IPRec, unsigned short PortRec);
+
 	std::deque<class RemotePlayer*> m_Players;
 
 	// just to unpack packet
 	float m_PosX, m_PosY, m_Rotation, m_CannonRotation;
+	std::string m_PlayerNick;
 
 	int GetPlayerList();
+
+	sf::Clock m_PingClock;
+
+	void CheckPing();
 
 };
 #endif

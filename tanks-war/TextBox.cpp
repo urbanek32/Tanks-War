@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-TextBox::TextBox(sf::Vector2f XY1, sf::String Text, sf::Color TextColor, float TextSize, float Width, sf::Color nonActive, sf::Color Active )
+TextBox::TextBox(sf::Vector2f XY1, sf::String Text, sf::Color TextColor, std::string GlobalName, float TextSize, float Width, sf::Color nonActive, sf::Color Active )
 {
 	m_XY1 = XY1;
 
@@ -16,7 +16,7 @@ TextBox::TextBox(sf::Vector2f XY1, sf::String Text, sf::Color TextColor, float T
 	ActiveColor = Active;
 	nonActiveColor = nonActive;
 
-	
+	m_GlobalName = GlobalName;
 
 	m_text.SetFont(LoadContent::GetInstance()->m_font2);
 	m_text.SetColor(TextColor);
@@ -68,12 +68,13 @@ void TextBox::HandleEvent(sf::Event & Event)
 		{
 			if(_tmp.size() > 0) _tmp.erase( _tmp.size() -1, 1);
 		}
-		else if(Event.Text.Unicode < 127)
+		else if(Event.Text.Unicode < 127 && Event.Text.Unicode != '\n')
 		{
 			if(_tmp.size() < 20) _tmp += static_cast<char>(Event.Text.Unicode);
 		}
-
 		SetText(_tmp);
+
+		globals[m_GlobalName] = _tmp;
 	}
 }
 

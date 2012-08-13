@@ -7,22 +7,35 @@ class NetworkManager
 public:
 	NetworkManager();
 
-	sf::SocketUDP m_SocketUDP;
-
 	// return instnace to this object
 	static NetworkManager* GetInstance();
 
+	// Send ping packet to server
 	void SendPingPacket();
 
+	// Send request for players list
+	void SendRequestForPlayerList();
+
+	// contain Server IP
 	sf::IPAddress m_ServerIP;
 
+	// contain Server Port
 	unsigned short m_ServerPort;
 
-	static std::string m_PlayerNick;
-
+	// main function to Recive all packets
 	void RecivePackets();
 
+	// Returns lasts know Server Ping
 	float GetServerPing();
+
+	// Change current server IP to NewServerIP
+	void SetNewIPServer(std::string & NewServerIP);
+
+	// Returns lst know Server Player's List
+	int GetPlayerList();
+
+	// Send data to server
+	void SendData(sf::Packet & Packet);
 
 private:
 	sf::Clock m_clock;
@@ -34,6 +47,11 @@ private:
 	sf::IPAddress m_IPRec;
 
 	sf::Packet m_PacketRec, m_Packet;
+
+	int m_PlayerList;
+
+	// send ping packet back to server
+	void ResendPing(sf::SocketUDP & SocketUDP, sf::Packet & Packet, sf::IPAddress & IPToSend, unsigned short PortToSend);
 
 };
 #endif

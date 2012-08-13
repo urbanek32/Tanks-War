@@ -39,7 +39,7 @@ void EnemyAI::Update(sf::RenderWindow & App, sf::Vector2f kTargetXY)
 		{
 			ChooseTarget(kTargetXY);
 			Shoot(App);
-			m_enemy.Move(-m_enemyDis * App.GetFrameTime() );
+			m_enemy.Move(-m_enemyDis * App.GetFrameTime());
 			m_shape = sf::Shape::Circle(m_enemy.GetPosition(), m_range, sf::Color(255,0,0,75), 2.f, sf::Color(255,0,0,255));
 		
 		}

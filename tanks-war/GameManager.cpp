@@ -6,6 +6,8 @@ GameManager* ptr=nullptr;
 GameManager* ptr=NULL;
 #endif
 
+std::map<std::string, std::string>globals;
+
 GameManager::GameManager()
 {
 	_gameState = ShowingMenu; m_screen = 0; // set int 1 : mean ShowingMenu || set int 0 : mean LoadContent
@@ -15,6 +17,7 @@ GameManager::GameManager()
 	m_Options = new OptionsMenu();
 	m_joinGameLobby = new JoinGameLobby();
 	m_game = new Game();
+	m_OnlineGame = new OnlineGame();
 	
 
 	m_Screens.push_back(m_loadContent); // 0
@@ -22,7 +25,9 @@ GameManager::GameManager()
 	m_Screens.push_back(m_Options); // 2
 	m_Screens.push_back(m_joinGameLobby); // 3
 	m_Screens.push_back(m_game); // 4
+	m_Screens.push_back(m_OnlineGame); // 5
 	
+	m_SocketUDP.SetBlocking(false);
 }
 
 
@@ -33,10 +38,6 @@ void GameManager::run(sf::RenderWindow & App)
 			m_screen = m_Screens[m_screen]->Run(App);
 		}
 
-		delete m_loadContent;
-		delete m_Menu;
-		delete m_Options;
-		delete m_joinGameLobby;
 }
 
 GameManager* GameManager::GetInstance()

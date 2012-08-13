@@ -37,5 +37,7 @@ private:
 	sf::Clock m_Clock, m_clock2;
 
 	class MapManager *m_MapMng;
+
+	unsigned short m_Score;
 };
 #endif

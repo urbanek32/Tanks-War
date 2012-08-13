@@ -77,7 +77,7 @@ void OptionsMenu::Init()
 	readDataFromXmlConfigFile();
 
 
-	m_playerNickBox = new TextBox(sf::Vector2f(150,100), player_nick, sf::Color(255,0,0,255), 30.f);
+	m_playerNickBox = new TextBox(sf::Vector2f(150,100), player_nick, sf::Color(255,0,0,255), "PlayerNick", 30.f);
 	m_playerNickBox->SetLabel(sf::String("Your nick: "), 30.f, sf::Color(255,110,0,255), 4.f);
 
 	m_Inited = true;
