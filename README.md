@@ -9,5 +9,6 @@ Using:
 - C++
 - SFML 1.6
 - TinyXML
+- Box2D
 
 All made by me in educational purpose.
