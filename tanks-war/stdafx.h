@@ -17,6 +17,8 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
+#include <enet/enet.h>
+#include <Box2D\Box2D.h>
 
 #include "cScreen.h"
 #include "MainMenu.h"
@@ -36,6 +38,7 @@
 #include "NetworkManager.h"
 #include "OnlineGame.h"
 #include "RemotePlayer.h"
+#include "Physic.h"
 
 #include "TinyXML\tinyxml.h"
 

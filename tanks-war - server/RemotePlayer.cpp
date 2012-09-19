@@ -5,11 +5,13 @@ RemotePlayer::RemotePlayer()
 
 }
 
-RemotePlayer::RemotePlayer(sf::IPAddress IP, unsigned short Port, std::string PlayerNick, float PosX, float PosY, float Rotation, float CannonRotation)
+RemotePlayer::RemotePlayer(sf::IPAddress IP, unsigned short Port, std::string PlayerNick, std::string TankType, std::string CannonType, float PosX, float PosY, float Rotation, float CannonRotation)
 {
 	m_IP = IP;
 	m_Port = Port;
 	m_PlayerNick = PlayerNick;
+	m_TankType = TankType;
+	m_CannonType = CannonType;
 	m_Pos.x = PosX;
 	m_Pos.y = PosY;
 	m_Rotation = Rotation;
@@ -65,4 +67,24 @@ void RemotePlayer::SetCannonRotation(float & CannonRotation)
 void RemotePlayer::SetNick(std::string & NewNick)
 {
 	m_PlayerNick = NewNick;
+}
+
+void RemotePlayer::SetTankType(std::string & TankType)
+{
+	m_TankType = TankType;
+}
+
+void RemotePlayer::SetCannonType(std::string & CannonType)
+{
+	m_CannonType = CannonType;
+}
+
+std::string & RemotePlayer::GetTankType()
+{
+	return m_TankType;
+}
+
+std::string & RemotePlayer::GetCannonType()
+{
+	return m_CannonType;
 }

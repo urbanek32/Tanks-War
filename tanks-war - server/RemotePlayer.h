@@ -7,7 +7,7 @@ class RemotePlayer
 public:
 	RemotePlayer();
 
-	RemotePlayer(sf::IPAddress IP, unsigned short Port, std::string PlayerNick = "Anon", float PosX = 0.0f, float PosY = 0.0f, float Rotation = 0.0f, float CannonRotation = 0.0f);
+	RemotePlayer(sf::IPAddress IP, unsigned short Port, std::string PlayerNick = "Anon", std::string TankType = "TankMedium", std::string CannonType = "CannonMedium", float PosX = 0.0f, float PosY = 0.0f, float Rotation = 0.0f, float CannonRotation = 0.0f);
 
 	sf::IPAddress & GetIP();
 
@@ -29,6 +29,14 @@ public:
 
 	void SetNick(std::string & NewNick);
 
+	std::string & GetTankType();
+
+	std::string & GetCannonType();
+
+	void SetTankType(std::string & TankType);
+
+	void SetCannonType(std::string & CannonType);
+
 private:
 	sf::Vector2f m_Pos;
 
@@ -36,7 +44,7 @@ private:
 
 	float m_CannonRotation;
 
-	std::string m_PlayerNick;
+	std::string m_PlayerNick, m_TankType, m_CannonType;
 
 	sf::IPAddress m_IP;
 

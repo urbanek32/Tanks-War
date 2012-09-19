@@ -2,5 +2,6 @@
 <root>
     <nick>Specjalista</nick>
     <nick_color>Yellow</nick_color>
-    <tank_type>Medium</tank_type>
+    <tank_type>CONTENT//TankMedium.png</tank_type>
+    <cannon_type>CONTENT//CannonMedium.png</cannon_type>
 </root>

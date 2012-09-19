@@ -15,6 +15,10 @@ void OnlineGame::m_Init()
 	m_View = new sf::View(sf::FloatRect(0,0, 1300, 700) );
 
 	m_Inited = true;
+
+	bylgracz=0;
+	bylydane=0;
+
 }
 
 int OnlineGame::Run(sf::RenderWindow & App)
@@ -44,12 +48,27 @@ int OnlineGame::Run(sf::RenderWindow & App)
 			if(m_Event.Type == sf::Event::KeyPressed && m_Event.Key.Code == sf::Key::Escape)
 			{
 				// BACK TO MAINMENU
-				m_Running = false;
+				//m_Running = false;
+				SendPlayerLeave();
 				return 1;
 			}
 
 
 		} // end of events loop
+
+#pragma region debuginfo
+std::ostringstream bufor;
+sf::String tdebug;
+tdebug.SetFont(sf::Font::GetDefaultFont());
+tdebug.SetSize(20);
+tdebug.SetColor(sf::Color(255,0,0,255));
+bufor << "FPS = " << m_FrameRate;
+bufor << "\nByl nowy gracz = " << bylgracz;
+bufor << "\nDane otrzymane = " << bylydane;
+tdebug.SetText(bufor.str());
+App.Draw(tdebug);	
+#pragma endregion
+
 
 		RecivePackets();
 
@@ -58,6 +77,7 @@ int OnlineGame::Run(sf::RenderWindow & App)
 
 		DrawAllPlayers(App);
 		ManageLocalPlayer(App);
+
 
 
 		// PUT HERE: static objects like interface etc
@@ -97,6 +117,7 @@ void OnlineGame::RecivePackets()
 		{
 			// Add new player
 			AddNewPlayer(m_Packet);
+			bylgracz++;
 			break;
 		}
 
@@ -108,6 +129,7 @@ void OnlineGame::RecivePackets()
 	case sf::Uint8(4) : // new data income from server
 		{
 			UpdateData(m_Packet);
+			bylydane++;
 			break;
 		}
 	case sf::Uint8(5) : // players leave
@@ -162,10 +184,10 @@ void OnlineGame::UpdateData(sf::Packet & Packet)
 
 void OnlineGame::AddNewPlayer(sf::Packet & Packet)
 {
-	Packet >> _ip >> m_Port >> _tanktype >> _cannontype >> _playernick >> _PosX >> _PosY >> _Rotation >> _CannonRotation;
+	Packet >> _ip >> m_Port >> _playernick >> _tanktype >> _cannontype;
 	m_IP = _ip;
 
-	m_RemotePlayers.push_back( new RemotePlayer( m_IP, m_Port, _tanktype, _cannontype, _playernick, _PosX, _PosY, _Rotation, _CannonRotation) );
+	m_RemotePlayers.push_back( new RemotePlayer( m_IP, m_Port, _tanktype, _cannontype, _playernick) );
 
 }
 
@@ -175,17 +197,26 @@ void OnlineGame::ManageLocalPlayer(sf::RenderWindow & App)
 
 	if( m_DataClock.GetElapsedTime()  >= 0.04f )
 	{
-		SendData( m_Player->GetPlayerPosition().x, m_Player->GetPlayerPosition().y, m_Player->GetPlayerRotation(), m_Player->GetCannonRotation() );
+		SendData( globals["PlayerNick"], m_Player->GetPlayerPosition().x, m_Player->GetPlayerPosition().y, m_Player->GetPlayerRotation(), m_Player->GetCannonRotation() );
 		m_DataClock.Reset();
 	}
 
 	m_View->SetCenter( m_Player->GetPlayerPosition() );
 }
 
-void OnlineGame::SendData(float & PosX, float & PosY, float Rotation, float & CannonRotation)
+void OnlineGame::SendData(std::string & PlayerNick, float & PosX, float & PosY, float Rotation, float & CannonRotation)
 {
 	m_Packet.Clear();
 
-	m_Packet << sf::Uint8(4) << PosX << PosY << Rotation << CannonRotation;
+	m_Packet << sf::Uint8(4) << PlayerNick << PosX << PosY << Rotation << CannonRotation;
 	GMGI->m_SocketUDP.Send(m_Packet, globals["ServerIP"], 6666);
+}
+
+void OnlineGame::SendPlayerLeave()
+{
+	m_Packet.Clear();
+	m_Packet << sf::Uint8(5);
+
+	GMGI->m_SocketUDP.Send(m_Packet, globals["ServerIP"], 6666);
+
 }

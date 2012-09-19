@@ -66,14 +66,20 @@ void LoadAll::Run()
 	// PUT HERE ALL CONTENT TO LOAD
 
 	gResMng.Load_Image("CONTENT//tlo-test.png");
-	gResMng.Load_Image("CONTENT//cannon.png");
+
+	gResMng.Load_Image("CONTENT//cannon.png"); // Local player
 	gResMng.Load_Image("CONTENT//bullet.png");
 	gResMng.Load_Image("CONTENT//tank.png");
-	gResMng.Load_Image("CONTENT//cannon1.png");
+
+	gResMng.Load_Image("CONTENT//cannon1.png"); // AI player
 	gResMng.Load_Image("CONTENT//tank1.png");
+
 	gResMng.Load_Image("CONTENT//mapa-test.jpg");
 	gResMng.Load_Image("CONTENT//mur.jpg");
 	gResMng.Load_Image("CONTENT//mur3.jpg");
+
+	gResMng.Load_Image("CONTENT//CannonMedium.png"); // Remote player
+	gResMng.Load_Image("CONTENT//TankMedium.png");
 
 	done = true;
 }

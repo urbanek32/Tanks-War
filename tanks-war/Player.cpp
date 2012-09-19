@@ -33,8 +33,8 @@ void Player::Update(sf::RenderWindow & App)
 
 	const sf::Input & _input = App.GetInput();
 
-		if(_input.IsKeyDown(sf::Key::A)) { m_rotationDegree -= 3; m_rotation = 3; m_player.Rotate( m_rotation ); } // turn LEFT
-		if(_input.IsKeyDown(sf::Key::D)) { m_rotationDegree += 3; m_rotation = -3; m_player.Rotate( m_rotation  ); } // turn RIGHT
+		if(_input.IsKeyDown(sf::Key::A)) { m_rotationDegree -= 3; m_rotation = 3; m_player.Rotate( (float)m_rotation ); } // turn LEFT
+		if(_input.IsKeyDown(sf::Key::D)) { m_rotationDegree += 3; m_rotation = -3; m_player.Rotate( (float)m_rotation  ); } // turn RIGHT
 
 		if(_input.IsKeyDown(sf::Key::W)) { m_V += 3.00  ;    }
 		if(_input.IsKeyDown(sf::Key::S)) { m_V -= 1.50  ;    }
@@ -112,13 +112,13 @@ void Player::Init()
      } 
 
 	m_player.SetImage(gResMng.Get_Image("CONTENT//tank.png"));
-	m_player.SetCenter(m_player.GetSize().x / 2, m_player.GetSize().y / 2 );
+	m_player.SetCenter(m_player.GetSize().x / 2.f, m_player.GetSize().y / 2.f );
 	
 
 	m_cannon.SetImage(gResMng.Get_Image("CONTENT//cannon.png"));
 	m_cannon.SetCenter(m_cannon.GetSize().x / 3.5f, m_cannon.GetSize().y /2.f );
 	
-	m_playerPozVec = sf::Vector2f(200, 300);
+	m_playerPozVec = sf::Vector2f(0, 0);
 	m_Health = 100;
 
 	m_inited = true;

@@ -39,5 +39,7 @@ private:
 	class MapManager *m_MapMng;
 
 	unsigned short m_Score;
+
+	class Physic *m_Physic;
 };
 #endif

@@ -34,7 +34,7 @@ private:
 
 	void RecivePackets();
 
-	void SendData(float & PosX, float & PosY, float  Rotation, float & CannonRotation);
+	void SendData(std::string & PlayerNick, float & PosX, float & PosY, float  Rotation, float & CannonRotation);
 
 	void UpdateData(sf::Packet & Packet);
 
@@ -47,5 +47,7 @@ private:
 	void AddNewPlayer(sf::Packet & Packet);
 
 	void ManageLocalPlayer(sf::RenderWindow & App);
+
+	int bylgracz, bylydane;
 };
 #endif

@@ -10,13 +10,8 @@ OptionsMenu* ptr=NULL;
 OptionsMenu::OptionsMenu()
 {
 	
-	
-	
 	Running = true;
 	m_Inited = false;
-
-	
-
 
 }
 
@@ -27,7 +22,6 @@ int OptionsMenu::Run(sf::RenderWindow & App)
 	if(!m_Inited)
 		Init();
 
-	
 	
 	while(Running)
 	{
@@ -125,7 +119,7 @@ bool OptionsMenu::readDataFromXmlConfigFile()
 			if(t == NULL)
 				continue;
 			player_nick.SetText(t->Value());
-
+			globals["PlayerNick"] = player_nick.GetText();
 		}
 
 		if(elemName == "nick_color")
@@ -135,7 +129,6 @@ bool OptionsMenu::readDataFromXmlConfigFile()
 			if(t == NULL)
 				continue;
 			player_color.SetText(t->Value());
-
 		}
 
 		if(elemName == "tank_type")
@@ -145,7 +138,17 @@ bool OptionsMenu::readDataFromXmlConfigFile()
 			if(t == NULL)
 				continue;
 			player_tankType.SetText(t->Value());
+			globals["TankType"] = player_tankType.GetText();
+		}
 
+		if(elemName == "cannon_type")
+		{
+			TiXmlNode *e = _elem->FirstChild();
+			TiXmlText *t = e->ToText();
+			if(t == NULL)
+				continue;
+			player_cannonType.SetText(t->Value());
+			globals["CannonType"] = player_cannonType.GetText();
 		}
 
 		/*for(TiXmlNode* e = _elem->FirstChild(); e != NULL; e = e->NextSibling())
@@ -178,6 +181,7 @@ bool OptionsMenu::saveDataToXmlConfigFile()
 	if(_temp.length() <= 0) _temp = "NewPlayer";
 	TiXmlText* nickText = new TiXmlText(_temp.c_str());
 	nickElem->LinkEndChild(nickText);
+	globals["PlayerNick"] = _temp;
 
 	TiXmlElement* nick_colorElem = new TiXmlElement("nick_color");
 	root->LinkEndChild(nick_colorElem);
@@ -189,9 +193,18 @@ bool OptionsMenu::saveDataToXmlConfigFile()
 	TiXmlElement* tank_typeElem = new TiXmlElement("tank_type");
 	root->LinkEndChild(tank_typeElem);
 	_temp = player_tankType.GetText();
-	if(_temp.length() <= 0) _temp = "Medium";
+	if(_temp.length() <= 0) _temp = "TankMedium";
 	TiXmlText* tankTypeText = new TiXmlText(_temp.c_str());
 	tank_typeElem->LinkEndChild(tankTypeText);
+	globals["TankType"] = _temp;
+
+	TiXmlElement* cannon_typeElem = new TiXmlElement("cannon_type");
+	root->LinkEndChild(cannon_typeElem);
+	_temp = player_cannonType.GetText();
+	if(_temp.length() <= 0) _temp = "CannonMedium";
+	TiXmlText* cannonTypeText = new TiXmlText(_temp.c_str());
+	cannon_typeElem->LinkEndChild(cannonTypeText);
+	globals["CannonType"] = _temp;
 
 	bool _success = doc.SaveFile("CONTENT\\ConfigFile.xml");
 	doc.Clear();

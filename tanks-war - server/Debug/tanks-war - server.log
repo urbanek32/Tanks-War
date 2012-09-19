@@ -1,5 +1,5 @@
-﻿Build started 2012-08-13 20:40:52.
-     1>Project "C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war - server\tanks-war - server.vcxproj" on node 2 (rebuild target(s)).
+﻿Build started 2012-09-19 21:36:01.
+     1>Project "C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war - server\tanks-war - server.vcxproj" on node 3 (rebuild target(s)).
      1>_PrepareForClean:
          Deleting file "Debug\tanks-war - server.lastbuildstate".
        InitializeBuildStatus:
@@ -54,4 +54,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.94
+Time Elapsed 00:00:02.24

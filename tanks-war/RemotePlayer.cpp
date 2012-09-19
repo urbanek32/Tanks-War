@@ -18,8 +18,12 @@ RemotePlayer::RemotePlayer(sf::IPAddress IP, unsigned short Port, std::string Ta
 	m_Rotation = Rotation;
 	m_CannonRotation = CannonRotation;
 
-	m_TankSprite.SetCenter( m_TankSprite.GetSize().x / 2, m_TankSprite.GetSize().y / 2);
-	m_CannonSprite.SetCenter( m_CannonSprite.GetSize().x / 3.5, m_CannonSprite.GetSize().y / 2);
+	m_TankSprite.SetCenter( m_TankSprite.GetSize().x / 2.f, m_TankSprite.GetSize().y / 2.f);
+	m_CannonSprite.SetCenter( m_CannonSprite.GetSize().x / 3.5f, m_CannonSprite.GetSize().y / 2.f);
+
+	m_TankSprite.SetPosition(PosX, PosY);
+	m_CannonSprite.SetPosition(PosX, PosY);
+
 }
 
 

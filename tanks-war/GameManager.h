@@ -7,6 +7,8 @@ enum GameState
 	Loading, ShowingMenu, Options, Joining, Playing, Exiting
 };
 
+// globals now exist: PlayerNick, ServerIP, TankType, CannonType
+// and every textbox you'll use
 extern std::map<std::string, std::string>globals;
 
 class GameManager

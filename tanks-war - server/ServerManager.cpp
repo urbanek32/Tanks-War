@@ -32,9 +32,10 @@ void ServerManager::Run(sf::SocketUDP & SocketUDP)
 			}
 		case sf::Uint8(2) :	// New Player Packet
 			{
-				AddNewPlayer(m_PacketRec, m_IPRec, m_PortRec);
-				SendAcceptedNewPlayer(SocketUDP, m_PacketRec, m_IPRec, m_PortRec);
 				std::cout<<"New player: " << m_IPRec << " : " << m_PortRec << std::endl;
+				AddNewPlayer(m_PacketRec, m_IPRec, m_PortRec);
+				SendAcceptedNewPlayer(SocketUDP, m_IPRec, m_PortRec);
+				SendToAllNewPlayerJoin(SocketUDP, m_IPRec, m_PortRec);
 				break;
 			}
 		case sf::Uint8(3) :	// Player list packet, resend it
@@ -62,11 +63,6 @@ void ServerManager::ResendPing(sf::SocketUDP & SocketUDP, sf::Packet & Packet, s
 	SocketUDP.Send(Packet, IPToSend, PortToSend);
 }
 
-void ServerManager::AddNewPlayer(sf::Packet & Packet, sf::IPAddress & IP, unsigned short Port)
-{
-	Packet >> m_PlayerNick;
-	m_Players.push_back(new RemotePlayer(IP, Port, m_PlayerNick));
-}
 
 void ServerManager::SendPlayerList(sf::SocketUDP & SocketUDP, sf::IPAddress & IPToSend, unsigned short PortToSend)
 {
@@ -99,6 +95,9 @@ void ServerManager::ManageArrivedData(sf::SocketUDP & SocketUDP, sf::Packet & Pa
 		}
 		else
 		{
+			Packet.Clear();
+			Packet << sf::Uint8(4) << IPRec.ToString() << PortRec << m_PosX << m_PosY << m_Rotation << m_CannonRotation;
+			std::cout << sf::Uint8(4) << IPRec.ToString() << PortRec << m_PosX << m_PosY << m_Rotation << m_CannonRotation << std::endl;
 			SocketUDP.Send(Packet, (*it)->GetIP(), (*it)->GetPort() );
 		}
 	}
@@ -110,9 +109,39 @@ void ServerManager::CheckPing()
 
 }
 
-void ServerManager::SendAcceptedNewPlayer(sf::SocketUDP & SocketUDP, sf::Packet & Packet, sf::IPAddress & IPToSend, unsigned short PortToSend)
+void ServerManager::AddNewPlayer(sf::Packet & Packet, sf::IPAddress & IP, unsigned short Port)
 {
-	Packet.Clear();
-	Packet << sf::Uint8(2);
-	SocketUDP.Send(Packet, IPToSend, PortToSend);
+	Packet >> m_PlayerNick >> m_PlayerTankType >> m_PlayerCannonType;
+	m_Players.push_back(new RemotePlayer(IP, Port, m_PlayerNick, m_PlayerTankType, m_PlayerCannonType));
+//std::cout << m_PlayerNick << m_PlayerTankType << m_PlayerCannonType << std::endl;
+}
+
+void ServerManager::SendAcceptedNewPlayer(sf::SocketUDP & SocketUDP, sf::IPAddress & IPToSend, unsigned short PortToSend)
+{
+	sf::Packet *_packet = new sf::Packet();
+
+	*_packet << sf::Uint8(2);
+	SocketUDP.Send(*_packet, IPToSend, PortToSend);
+
+	delete _packet;
+}
+
+void ServerManager::SendToAllNewPlayerJoin(sf::SocketUDP & SocketUDP, sf::IPAddress & IPRec, unsigned short PortRec)
+{
+	sf::Packet *_packet = new sf::Packet();
+	
+std::cout<<"STANPJ: " << sf::Uint8(2) << IPRec.ToString() << PortRec << m_Players.back()->GetPlayerNick() << m_Players.back()->GetTankType() << m_Players.back()->GetCannonType() << std::endl;
+
+	*_packet << sf::Uint8(2) << IPRec.ToString() << PortRec << m_Players.back()->GetPlayerNick() << m_Players.back()->GetTankType() << m_Players.back()->GetCannonType();
+	
+
+	for(std::deque<class RemotePlayer*>::const_iterator it = m_Players.begin(); it != m_Players.end(); ++it)
+	{
+		if( (*it)->GetIP() != IPRec || (*it)->GetPort() != PortRec )
+		{
+			SocketUDP.Send(*_packet, (*it)->GetIP(), (*it)->GetPort() );
+		}
+	}
+
+	delete _packet;
 }

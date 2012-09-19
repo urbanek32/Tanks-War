@@ -77,8 +77,14 @@ tdebug.SetText(bufor.str());
 App.Draw(tdebug);	
 #pragma endregion
 
+		// if server accept my connection. Go to OnlineGame
+		if(m_StartGame)
+			return 5;
+
+
 		RecivePackets();
 
+		// draw textbox for server ip
 		m_serverIPBox->Show(App);
 
 		// check ping every 5sec
@@ -88,8 +94,7 @@ App.Draw(tdebug);
 			m_pingclock.Reset();
 		}
 
-		if(m_StartGame)
-			return 5;
+		
 
 		App.Display();
 		sf::Sleep(0.01f);
@@ -131,7 +136,7 @@ void JoinGameLobby::SendPlayersRequest()
 void JoinGameLobby::SendNewPlayerJoin()
 {
 	m_Packet.Clear();
-	m_Packet << sf::Uint8(2) << globals["PlayerNick"];
+	m_Packet << sf::Uint8(2) << globals["PlayerNick"] << globals["TankType"] << globals["CannonType"];
 	GMGI->m_SocketUDP.Send(m_Packet, globals["ServerIP"], 6666);
 }
 

@@ -43,6 +43,7 @@ private:
 
 	sf::Clock m_pingclock, m_pingclock2;
 
-	unsigned short m_ServerPing, m_PlayerCount;
+	unsigned short m_ServerPing;
+	int m_PlayerCount;
 };
 #endif

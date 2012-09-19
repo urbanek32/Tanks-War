@@ -22,7 +22,7 @@ private:
 	
 	sf::Sprite m_background;
 
-	sf::String player_nick, player_color, player_tankType; // helpers for XML
+	sf::String player_nick, player_color, player_tankType, player_cannonType; // helpers for XML
 	std::string attr,t,elemName; // helpers for XML
 
 	class TextBox *m_playerNickBox;

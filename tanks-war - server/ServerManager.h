@@ -25,11 +25,13 @@ private:
 
 	sf::Uint8 m_PacketType;
 
-	void SendAcceptedNewPlayer(sf::SocketUDP & SocketUDP, sf::Packet & Packet, sf::IPAddress & IPToSend, unsigned short PortToSend);
+	void SendAcceptedNewPlayer(sf::SocketUDP & SocketUDP, sf::IPAddress & IPToSend, unsigned short PortToSend);
 
 	void ResendPing(sf::SocketUDP & SocketUDP, sf::Packet & Packet, sf::IPAddress & IPToSend, unsigned short PortToSend);
 
 	void AddNewPlayer(sf::Packet & Packet, sf::IPAddress & IP, unsigned short Port);
+
+	void SendToAllNewPlayerJoin(sf::SocketUDP & SocketUDP, sf::IPAddress & IP, unsigned short Port);
 
 	void SendPlayerList(sf::SocketUDP & SocketUDP, sf::IPAddress & IPToSend, unsigned short PortToSend);
 
@@ -39,7 +41,7 @@ private:
 
 	// just to unpack packet
 	float m_PosX, m_PosY, m_Rotation, m_CannonRotation;
-	std::string m_PlayerNick;
+	std::string m_PlayerNick, m_PlayerTankType, m_PlayerCannonType;
 
 	int GetPlayerList();
 
