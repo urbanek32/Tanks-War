@@ -37,5 +37,5 @@ private:
 	
 	PhysicObject _PO;
 
-
+	float rot;
 };

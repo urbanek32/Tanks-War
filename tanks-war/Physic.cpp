@@ -1,6 +1,9 @@
 #include "stdafx.h"
 
 #define FACTOR 30.f
+#define DEGTORAD 0.0174532925199432957f
+#define RADTODEG 57.295779513082320876f
+
 
 Physic::Physic()
 {
@@ -11,7 +14,7 @@ Physic::Physic()
 
 	// create ground
 	groundSprite.SetImage(gResMng.Get_Image("CONTENT//mur3.jpg"));
-	groundSprite.SetPosition(50.f, 200.0f);
+	groundSprite.SetPosition(0.f, 200.0f);
 	groundSprite.SetCenter(groundSprite.GetSize().x / 2, groundSprite.GetSize().y / 2);
 
 	groundBodyDef = new b2BodyDef;
@@ -38,19 +41,26 @@ Physic::Physic()
 	_PO.box.SetAsBox(_PO.sprite.GetSize().x / 2.0f, _PO.sprite.GetSize().y / 2.0f);
 
 	_PO.fixture.shape = &_PO.box;
-	_PO.fixture.density = 50.0f;
+	_PO.fixture.density = 5000.0f;
 	_PO.fixture.friction = 0.3f;
 
 	_PO.body->CreateFixture(&_PO.fixture);
+
+	rot = 0;
 }
 
 void Physic::Tick(sf::RenderWindow & App, float frequency)
 {
 	b2Vec2 vel = _PO.body->GetLinearVelocity();
-	//float desiredVel = 0;
+	rot = _PO.body->GetAngle();
 	if(App.GetInput().IsKeyDown(sf::Key::Num1)) { vel.y = b2Max( vel.y - 0.1f, -50.0f ); }
-	if(App.GetInput().IsKeyDown(sf::Key::Num2)) { vel.y *=  0.98; }
+	if(App.GetInput().IsKeyDown(sf::Key::Num2)) { vel =  b2Vec2(0.f, 0.f); }
 	if(App.GetInput().IsKeyDown(sf::Key::Num3)) { vel.y = b2Min( vel.y + 0.1f,  50.0f ); }
+
+	if(App.GetInput().IsKeyDown(sf::Key::Num4)) { rot += -0.5f * App.GetFrameTime(); _PO.body->SetTransform(_PO.body->GetPosition(), rot);  }
+	if(App.GetInput().IsKeyDown(sf::Key::Num5)) { _PO.body->SetAngularVelocity(0.f);  }
+	if(App.GetInput().IsKeyDown(sf::Key::Num6)) { rot += 0.5f * App.GetFrameTime(); _PO.body->SetTransform(_PO.body->GetPosition(), rot); }
+	
 	//float velChange = desiredVel - vel.y;
 	//float force = _PO.body->GetMass() * velChange / App.GetFrameTime();
 
