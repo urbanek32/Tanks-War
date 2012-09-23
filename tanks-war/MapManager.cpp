@@ -1,48 +1,87 @@
 #include "stdafx.h"
 
+#define PGI Physic::GetInstance()
 
 MapManager::MapManager()
 {
-	map[0][0] = 0;
-    map[0][1] = 1;
-    map[0][2] = 0;
-    map[0][3] = 0;
-    map[1][0] = 0;
-    map[1][1] = 0;
-    map[1][2] = 0;
-    map[1][3] = 0;
-    map[2][0] = 0;
-    map[2][1] = 0;
-    map[2][2] = 0;
-    map[2][3] = 0;
-    map[3][0] = 0;
-    map[3][1] = 0;
-    map[3][2] = 0;
-    map[3][3] = 1;
-
-
 	tiles[0] = sf::Sprite(gResMng.Get_Image("CONTENT//mur.jpg")); // sciana
 	tiles[1] = sf::Sprite(gResMng.Get_Image("CONTENT//mur3.jpg")); // droga
+
+	tiles[0].SetCenter( tiles[0].GetSize().x /2, tiles[0].GetSize().y /2);
+	tiles[1].SetCenter( tiles[1].GetSize().x /2, tiles[1].GetSize().y /2);
+}
+
+void MapManager::LoadMap(std::string pathfile, class Physic &physic)
+{
+	std::ifstream file(pathfile);
+	if(file.fail()) 
+	{
+		std::cout<<"File does not exist\n";
+		mapWidth = 0;
+		mapHeight = 0;
+	}
+
+	file >> mapWidth >> mapHeight;
+
+	for(unsigned int y = 0; y < mapHeight; y++)
+	{
+		for(unsigned int x = 0; x < mapWidth; x++)
+		{
+			file >> gameMap[x][y];
+			tileID = gameMap[x][y];
+
+			sf::Sprite *sprite = new sf::Sprite();
+
+			m_image = tiles[tileID].GetImage();
+			imageWidth = m_image->GetWidth();
+			imageHeight = m_image->GetHeight();
+
+			sprite->SetImage( *m_image );
+			sprite->SetCenter(imageWidth / 2.f, imageHeight / 2.f);
+			sprite->SetPosition( x * imageWidth, y * imageHeight);
+
+			v_Map.push_back(sprite);
+
+			if(tileID == 0)
+			{
+				physic.LoadStaticMapObjects(sprite->GetPosition().x, sprite->GetPosition().y, imageWidth, imageHeight);
+			}
+		}
+	}
 }
 
 void MapManager::DrawMap(sf::RenderWindow & App, sf::View & View)
 {
-	
-	for(int x = 0; x <= 3 ; x++)
+	/*
+	for(unsigned int y = 0; y < mapHeight; y++)
 	{
-		for(int y = 0; y <= 3; y++)
+		for(unsigned int x = 0; x < mapWidth; x++)
 		{
-			int tileId = map[x][y];
+			tileID = gameMap[x][y];
 
-			const sf::Image* image = tiles[tileId].GetImage();
+			m_image = tiles[tileID].GetImage();
+			imageWidth = m_image->GetWidth();
+			imageHeight = m_image->GetHeight();
 
-			int width = image->GetWidth();
-			int height = image->GetHeight();
-
-			tiles[tileId].SetPosition(x * width, y * height);
-
-			App.Draw(tiles[tileId]);
+			tiles[tileID].SetPosition( x * imageWidth, y * imageHeight);
+			
+			App.Draw(tiles[tileID]);
 		}
 	}
+	*/
+	
+	for(unsigned int i = 0; i < v_Map.size(); i++)
+	{
+		App.Draw(*v_Map[i]);
+	}
+}
 
+unsigned int MapManager::GetMapWidth()
+{
+	return mapWidth;
+}
+
+unsigned int MapManager::GetMapHeight()
+{
+	return mapHeight;
 }

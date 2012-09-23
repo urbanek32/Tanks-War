@@ -59,11 +59,12 @@ int Game::Run(sf::RenderWindow & App)
 		// PUT HERE: game objects etc
 		App.SetView(*m_View);
 
-		App.Draw(m_map);
+		//App.Draw(m_map);
+		m_MapMng->DrawMap(App, *m_View);
 		m_Physic->Tick(App, App.GetFrameTime() );
 
-		//m_MapMng->DrawMap(App, *m_View);
-		UpdateEnemies(App);
+		
+		//UpdateEnemies(App);
 		m_player->Update(App);
 		m_View->SetCenter(m_player->GetPlayerPosition().x ,m_player->GetPlayerPosition().y);
 
@@ -98,13 +99,14 @@ App.Draw(tdebug);
 
 void Game::Init()
 {
+	m_Physic = new Physic();
+
 	m_map.SetImage(gResMng.Get_Image("CONTENT//mapa-test.jpg"));
 
 	m_MapMng = new MapManager();
+	m_MapMng->LoadMap("CONTENT//map.txt", *m_Physic);
 
 	m_player = new Player();
-
-	m_Physic = new Physic();
 
 	m_View = new sf::View(sf::FloatRect(0,0,1300,700));
 

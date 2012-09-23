@@ -84,7 +84,7 @@
       <AdditionalIncludeDirectories>C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\Box2D\include;C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\ENet\include;C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\Box2D\lib\Debug;C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\ENet\lib;C:\Users\Patryk\Documents\GitHub\Tanks-War\tanks-war\SFML-1.6\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-main-d.lib;sfml-system-s-d.lib;sfml-graphics-s-d.lib;sfml-network-s-d.lib;sfml-window-s-d.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>

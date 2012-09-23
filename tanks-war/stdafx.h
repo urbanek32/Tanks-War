@@ -13,6 +13,7 @@
 #include <sstream>
 #include <math.h>
 #include <list>
+#include <fstream>
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
