@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
-
+#ifndef PHYSIC_H
+#define PHYSIC_H
 struct PhysicObject
 {
 	sf::Sprite sprite;
@@ -23,6 +24,23 @@ struct WallObject
 	b2FixtureDef *fixture;
 };
 
+struct PlayerObject
+{
+	// return player's position in sf::Vector2f
+	sf::Vector2f GetPosition();
+
+	b2BodyDef *bodyDef;
+	b2Body *body;
+	b2PolygonShape *shape;
+	b2FixtureDef *fixture;
+	
+	// player's velocity
+	b2Vec2 vel;
+
+	// player's rotation
+	float rotation;
+};
+
 
 class Physic
 {
@@ -39,26 +57,22 @@ public:
 	// returns instance to this object
 	static Physic* GetInstance();
 
+	// add player to physic's engine
+	void AddPlayer(float OX, float OY, unsigned int TileWidth, unsigned int TileHeigth);
+
+	// return const pointer to PlayerObject. First player = [0]index
+	PlayerObject* GetPlayer(unsigned int index);
 
 private:
+	// to init physic world
 	b2Vec2 *gravity;
 	b2World *world;
 
-	sf::Sprite groundSprite;
-	b2BodyDef *groundBodyDef;
-	b2Body *groundBody;
-	b2PolygonShape *groundBox;
+	// contains all players in game
+	std::vector<PlayerObject*> m_PlayerObjects;
 
-	sf::Sprite groundSprite2;
-	b2BodyDef *groundBodyDef2;
-	b2Body *groundBody2;
-	b2PolygonShape *groundBox2;
-
-	std::vector<PhysicObject> m_Objects;
-
+	// contains all map tiles
 	std::vector<WallObject*> m_WallObjects;
-	
-	PhysicObject _PO;
 
-	float rot, v, force;
 };
+#endif

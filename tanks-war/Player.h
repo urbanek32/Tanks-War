@@ -11,7 +11,7 @@ public:
 	static Player* GetInstance();
 
 	// main function to draw, update player's position and bullets
-	void Update(sf::RenderWindow & App);
+	void Update(sf::RenderWindow & App, class Physic & physic);
 
 	// returns current player's position
 	sf::Vector2f & GetPlayerPosition();
@@ -45,7 +45,7 @@ private:
 
 	// once using function to init data
 	bool m_inited;
-	void Init();
+	void Init(class Physic & physic);
 
 	// to managment time
 	sf::Clock m_clock, m_clock2;
@@ -55,10 +55,6 @@ private:
 
 	// update bullets
 	void UpdateBullets(sf::RenderWindow & App);
-
-	// table with cosinus and sinus in deegress
-	double tab_sin[360]; 
-	double tab_cos[360];
 
 	// player's speed
 	double m_V; 

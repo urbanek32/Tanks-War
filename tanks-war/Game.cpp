@@ -59,13 +59,13 @@ int Game::Run(sf::RenderWindow & App)
 		// PUT HERE: game objects etc
 		App.SetView(*m_View);
 
-		//App.Draw(m_map);
+//		App.Draw(m_map);
 		m_MapMng->DrawMap(App, *m_View);
 		m_Physic->Tick(App, App.GetFrameTime() );
 
 		
 		//UpdateEnemies(App);
-		m_player->Update(App);
+		m_player->Update(App, *m_Physic);
 		m_View->SetCenter(m_player->GetPlayerPosition().x ,m_player->GetPlayerPosition().y);
 
 		

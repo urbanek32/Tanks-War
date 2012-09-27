@@ -17,7 +17,7 @@ GameManager::GameManager()
 	m_Options = new OptionsMenu();
 	m_joinGameLobby = new JoinGameLobby();
 	m_game = new Game();
-	m_OnlineGame = new OnlineGame();
+//	m_OnlineGame = new OnlineGame();
 	
 
 	m_Screens.push_back(m_loadContent); // 0
@@ -25,7 +25,7 @@ GameManager::GameManager()
 	m_Screens.push_back(m_Options); // 2
 	m_Screens.push_back(m_joinGameLobby); // 3
 	m_Screens.push_back(m_game); // 4
-	m_Screens.push_back(m_OnlineGame); // 5
+//	m_Screens.push_back(m_OnlineGame); // 5
 	
 	m_SocketUDP.SetBlocking(false);
 }

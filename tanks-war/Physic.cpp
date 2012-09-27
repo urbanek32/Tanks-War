@@ -42,7 +42,7 @@ Physic::Physic()
 	groundBody->CreateFixture(groundBox, 0.0f);
 */
 
-
+/*
 	// create an Dynamic Object
 	_PO.sprite.SetImage(gResMng.Get_Image("CONTENT//tank.png"));
 	_PO.sprite.SetPosition(64.0f, 64.0f);
@@ -64,20 +64,23 @@ Physic::Physic()
 	rot = 0;
 	v = 0;
 	force = 0;
-
+*/
 	
 }
 
 void Physic::Tick(sf::RenderWindow & App, float frequency)
 {
+	world->Step(frequency, 6, 2);
+
+
+/*
 	b2Vec2 vel = _PO.body->GetLinearVelocity();
 	rot = _PO.body->GetAngle();
-	force = 0;
 	
 
-	if(App.GetInput().IsKeyDown(sf::Key::Numpad8)) { v += 5.f; }
+	if(App.GetInput().IsKeyDown(sf::Key::Numpad8)) { v += 2.f; }
 	if(App.GetInput().IsKeyDown(sf::Key::Numpad5)) { v =  0.f; }
-	if(App.GetInput().IsKeyDown(sf::Key::Numpad2)) { v -= 5.f; }
+	if(App.GetInput().IsKeyDown(sf::Key::Numpad2)) { v -= 2.f; }
 
 	if(App.GetInput().IsKeyDown(sf::Key::Numpad4)) { rot += -1.0f * App.GetFrameTime(); _PO.body->SetTransform(_PO.body->GetPosition(), rot);  }
 	if(App.GetInput().IsKeyDown(sf::Key::Numpad6)) { rot += 1.0f * App.GetFrameTime(); _PO.body->SetTransform(_PO.body->GetPosition(), rot); }
@@ -90,13 +93,6 @@ std::cout<< vel.x << " " << vel.y << " " << v << "\n";
 	_PO.body->SetAngularVelocity(0.f);
 	_PO.body->SetLinearVelocity( vel );
 
-//float change = force - vel.x;
-//force = _PO.body->GetMass() * change;
-
-//	_PO.body->ApplyLinearImpulse(b2Vec2(force, 0), _PO.body->GetWorldCenter());
-
-	world->Step(frequency, 6, 2);
-
 	_PO.sprite.SetPosition( _PO.body->GetPosition().x, _PO.body->GetPosition().y);
 	_PO.sprite.SetRotation( -(_PO.body->GetAngle()*(180/b2_pi)) );
 	
@@ -104,6 +100,7 @@ std::cout<< vel.x << " " << vel.y << " " << v << "\n";
 	
 
 	App.Draw(_PO.sprite);
+	*/
 }
 
 void Physic::LoadStaticMapObjects(float OX, float OY, unsigned int TileWidth, unsigned int TileHeigth)
@@ -124,4 +121,32 @@ void Physic::LoadStaticMapObjects(float OX, float OY, unsigned int TileWidth, un
 	WO->body->CreateFixture(WO->shape, 1000.f);
 	
 	m_WallObjects.push_back(WO);
+}
+
+void Physic::AddPlayer(float OX, float OY, unsigned int TileWidth, unsigned int TileHeigth)
+{
+	PlayerObject *PO = new PlayerObject();
+
+	PO->bodyDef = new b2BodyDef;
+	PO->bodyDef->type = b2_dynamicBody;
+	PO->bodyDef->position.Set(OX, OY);
+
+	PO->body = world->CreateBody(PO->bodyDef);
+
+	PO->shape = new b2PolygonShape;
+	PO->shape->SetAsBox(TileWidth / 2.f, TileHeigth / 2.f);
+	
+	PO->body->CreateFixture(PO->shape, 100.f);
+
+	m_PlayerObjects.push_back(PO);
+}
+
+sf::Vector2f PlayerObject::GetPosition()
+{
+	return sf::Vector2f(body->GetPosition().x, body->GetPosition().y);
+}
+
+PlayerObject* Physic::GetPlayer(unsigned int index)
+{
+	return m_PlayerObjects[index];
 }

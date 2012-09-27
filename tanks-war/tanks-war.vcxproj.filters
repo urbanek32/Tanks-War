@@ -81,9 +81,6 @@
     <ClInclude Include="RemotePlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OnlineGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Physic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -153,9 +150,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RemotePlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OnlineGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Physic.cpp">
