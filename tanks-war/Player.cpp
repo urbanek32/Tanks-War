@@ -5,15 +5,15 @@
 #define RADTODEG 57.295779513082320876f
 
 #ifdef CPP_0x11
-Player* ptr=nullptr;
+Player* p_ptr=nullptr;
 #else
-Player* ptr=NULL;
+Player* p_ptr=NULL;
 #endif
 
 Player* Player::GetInstance()
 {
-	if(ptr==NULL) ptr = new Player();
-	return ptr;
+	if(p_ptr==NULL) p_ptr = new Player();
+	return p_ptr;
 }
 
 Player::Player() : m_maxPlayerSpeed(400.0), m_maxPlayerBackSpeed(-300.0)
@@ -109,6 +109,31 @@ App.Draw(tdebug);
 
 		App.Draw(m_player);
 		App.Draw(m_cannon);
+}
+
+//FIXME: This must be fixed or deleted!
+void Player::Update(sf::RenderWindow & App)
+{
+	const sf::Input & _input = App.GetInput();
+
+	if(_input.IsKeyDown(sf::Key::W)) { m_V += 2.00  ;    }
+	if(_input.IsKeyDown(sf::Key::S)) { m_V -= 1.00  ;    }
+	if(_input.IsKeyDown(sf::Key::Space)) { m_V = 0.0 ;  }
+
+	m_mousePozVec = App.ConvertCoords(App.GetInput().GetMouseX(), App.GetInput().GetMouseY());
+
+	m_xH = m_cannon.GetPosition().x - m_mousePozVec.x;
+	m_yH = m_cannon.GetPosition().y - m_mousePozVec.y;
+	m_cannonRotation =(float)(atan2(m_yH,m_xH) * 180.f / b2_pi + 180.f);
+
+	if( m_V > m_maxPlayerSpeed ) m_V = m_maxPlayerSpeed;
+	if( m_V <  m_maxPlayerBackSpeed ) m_V = m_maxPlayerBackSpeed;
+
+	m_cannon.SetPosition(m_player.GetPosition());
+	m_cannon.SetRotation(-m_cannonRotation);
+
+	App.Draw(m_player);
+	App.Draw(m_cannon);
 }
 
 void Player::Init(class Physic & physic)

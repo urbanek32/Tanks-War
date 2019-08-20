@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
 #ifdef CPP_0x11
-LoadContent* ptr=nullptr;
+LoadContent* lc_ptr=nullptr;
 #else
-LoadContent* ptr=NULL;
+LoadContent* lc_ptr=NULL;
 #endif
 
 LoadContent::LoadContent()
@@ -26,8 +26,8 @@ void LoadContent::Init()
 
 LoadContent* LoadContent::GetInstance()
 {
-	if(ptr==NULL) ptr=new LoadContent();
-	return ptr;
+	if(lc_ptr==NULL) lc_ptr=new LoadContent();
+	return lc_ptr;
 }
 
 int LoadContent::Run(sf::RenderWindow &App)

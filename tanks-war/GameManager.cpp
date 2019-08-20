@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
 #ifdef CPP_0x11
-GameManager* ptr=nullptr;
+GameManager* gm_ptr=nullptr;
 #else
-GameManager* ptr=NULL;
+GameManager* gm_ptr=NULL;
 #endif
 
 std::map<std::string, std::string>globals;
@@ -42,6 +42,7 @@ void GameManager::run(sf::RenderWindow & App)
 
 GameManager* GameManager::GetInstance()
 {
-	if(ptr==NULL) ptr = new GameManager();
-	return ptr;
+	if (!gm_ptr)
+		gm_ptr = new GameManager();
+	return gm_ptr;
 }

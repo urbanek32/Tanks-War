@@ -4,15 +4,15 @@
 
 
 #ifdef CPP_0x11
-JoinGameLobby* ptr=nullptr;
+JoinGameLobby* jgl_ptr=nullptr;
 #else
-JoinGameLobby* ptr=NULL;
+JoinGameLobby* jgl_ptr=NULL;
 #endif
 
 JoinGameLobby* JoinGameLobby::GetInstance()
 {
-	if(ptr==NULL) ptr = new JoinGameLobby();
-	return ptr;
+	if(jgl_ptr==NULL) jgl_ptr = new JoinGameLobby();
+	return jgl_ptr;
 }
 
 JoinGameLobby::JoinGameLobby()

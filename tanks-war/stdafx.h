@@ -2,13 +2,14 @@
 // or project specific include files that are used frequently, but
 // are changed infrequently
 //
-
-#pragma once
+#ifndef STDAFX_H
+#define STDAFX_H
 
 #include "targetver.h"
 
-#include <stdio.h>
-#include <tchar.h>
+#include <cstdio>
+#include <cmath>
+//#include <tchar.h>
 #include <iostream>
 #include <sstream>
 #include <math.h>
@@ -39,8 +40,9 @@
 #include "NetworkManager.h"
 #include "RemotePlayer.h"
 #include "Physic.h"
+#include "OnlineGame.h"
 
-#include "TinyXML\tinyxml.h"
+#include "TinyXML/tinyxml.h"
 
-
+#endif
 // TODO: reference additional headers your program requires here

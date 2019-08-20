@@ -1,3 +1,5 @@
+//NOT EVEN USED
+//DEPRECATED
 #include "stdafx.h"
 
 

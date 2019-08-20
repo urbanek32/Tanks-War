@@ -1,4 +1,6 @@
-#include "stdafx.h"
+//NOT EVEN USED
+//DEPRECATED
+#include "Ekran1.h"
 
 Ekran1::Ekran1()
 {
