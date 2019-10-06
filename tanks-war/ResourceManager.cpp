@@ -54,13 +54,13 @@ ResourceManager::ResourceManager()
 }
 
 #ifdef CPP_0x11
-ResourceManager* ptr=nullptr;
+ResourceManager* rm_ptr=nullptr;
 #else
-ResourceManager* ptr=NULL;
+ResourceManager* rm_ptr=NULL;
 #endif
 
 ResourceManager* ResourceManager::GetInstance()
 {
-	if(ptr==NULL) ptr=new ResourceManager();
-	return ptr;
+	if(rm_ptr==NULL) rm_ptr=new ResourceManager();
+	return rm_ptr;
 }

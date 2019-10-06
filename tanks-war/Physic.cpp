@@ -5,15 +5,15 @@
 #define RADTODEG 57.295779513082320876f
 
 #ifdef CPP_0x11
-Physic* ptr=nullptr;
+Physic* phy_ptr=nullptr;
 #else
-Physic* ptr=NULL;
+Physic* phy_ptr=NULL;
 #endif
 
 Physic* Physic::GetInstance()
 {
-	if(ptr==NULL) ptr = new Physic();
-	return ptr;
+	if(phy_ptr==NULL) phy_ptr = new Physic();
+	return phy_ptr;
 }
 
 

@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
 #ifdef CPP_0x11
-OptionsMenu* ptr=nullptr;
+OptionsMenu* om_ptr=nullptr;
 #else
-OptionsMenu* ptr=NULL;
+OptionsMenu* om_ptr=NULL;
 #endif
 
 
@@ -214,6 +214,6 @@ bool OptionsMenu::saveDataToXmlConfigFile()
 
 OptionsMenu* OptionsMenu::GetInstance()
 {
-	if(ptr==NULL) ptr = new OptionsMenu();
-	return ptr;
+	if(om_ptr==NULL) om_ptr = new OptionsMenu();
+	return om_ptr;
 }

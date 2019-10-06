@@ -1,9 +1,6 @@
 #include "stdafx.h"
 
 
-static const double M_PI=3.14159265358979323846f;
-
-
 EnemyAI::EnemyAI(sf::Vector2f StartPosition, float Speed, float Range, int HealthPoints)
 {
 	m_Position = StartPosition;
@@ -34,7 +31,7 @@ void EnemyAI::Update(sf::RenderWindow & App, sf::Vector2f kTargetXY)
 
 		_d = sqrt( (kTargetXY.x - m_enemy.GetPosition().x) * (kTargetXY.x - m_enemy.GetPosition().x) + (kTargetXY.y - m_enemy.GetPosition().y) * (kTargetXY.y - m_enemy.GetPosition().y) );
 
-		// jak jestem w zasiêgu to mnie goñ i zmieñ kolor
+		// jak jestem w zasiï¿½gu to mnie goï¿½ i zmieï¿½ kolor
 		if(_d <= m_range && _d >= 10.f)
 		{
 			ChooseTarget(kTargetXY);
@@ -44,7 +41,7 @@ void EnemyAI::Update(sf::RenderWindow & App, sf::Vector2f kTargetXY)
 		
 		}
 		else
-		// jak NIE jestem w zasiêgu to stój i zmieñ kolor na domyœlny
+		// jak NIE jestem w zasiï¿½gu to stï¿½j i zmieï¿½ kolor na domyï¿½lny
 		{
 			m_shape = sf::Shape::Circle(m_enemy.GetPosition(), m_range, sf::Color(0,0,0,0), 2.f, sf::Color(255,0,0,255));
 		}

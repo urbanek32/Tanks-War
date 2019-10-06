@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
 #ifdef CPP_0x11
-NetworkManager* ptr=nullptr;
+NetworkManager* nm_ptr=nullptr;
 #else
-NetworkManager* ptr=NULL;
+NetworkManager* nm_ptr=NULL;
 #endif
 
 #define GLGI JoinGameLobby::GetInstance()
@@ -11,8 +11,8 @@ NetworkManager* ptr=NULL;
 
 NetworkManager* NetworkManager::GetInstance()
 {
-	if(ptr==NULL) ptr = new NetworkManager();
-	return ptr;
+	if(nm_ptr==NULL) nm_ptr = new NetworkManager();
+	return nm_ptr;
 }
 
 NetworkManager::NetworkManager()

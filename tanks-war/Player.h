@@ -13,6 +13,9 @@ public:
 	// main function to draw, update player's position and bullets
 	void Update(sf::RenderWindow & App, class Physic & physic);
 
+	// FIXME: Cut method of above one, just to compile this crap 
+	void Update(sf::RenderWindow & App);
+
 	// returns current player's position
 	sf::Vector2f & GetPlayerPosition();
 
